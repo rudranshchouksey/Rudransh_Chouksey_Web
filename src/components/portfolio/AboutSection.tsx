@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { GithubIcon, Instagram, Twitter } from "lucide-react";
 
 interface ExperienceItem {
   role: string;
@@ -16,10 +17,10 @@ export default function AboutSection() {
   ];
 
   const experience: ExperienceItem[] = [
-    { role: "Full Stack Developer", company: "TheSerifs", year: "2025-present" },
-    { role: "Full Stack Developer", company: "Accenture", year: "2021-2025" },
-    { role: "Traniee( MERN Stack )", company: "Robotronix Ind", year: "2020-2021" },
-    { role: "Intern( MERN Stack )", company: "BiteByte", year: "2020-2020" }
+    { role: "Full Stack Developer", company: "TheSerifs", year: "2025" },
+    { role: "Full Stack Developer", company: "Accenture", year: "2021" },
+    { role: "Traniee( MERN Stack )", company: "Robotronix Ind", year: "2021" },
+    { role: "Intern( MERN Stack )", company: "BiteByte", year: "2020" }
   ];
 
   const handleContactClick = (): void => {
@@ -52,26 +53,49 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <h3 className="text-4xl text-center font-serif font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 items-center justify-center "
+            <h3 className="text-4xl text-center font-serif font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 items-center justify-center mb-2 "
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
               Rudransh Chouksey
             </h3>
-            <p className="text-xs text-center font-serif text-gray-600 items-center justify-center max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm text-center font-sans text-gray-600 items-center justify-center max-w-2xl mx-auto mb-4 leading-relaxed">
               Full Stack Web Developer Based in India.
             </p>
 
             <div className="flex justify-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
-                <span className="text-lg">𝕏</span>
-              </div>
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
-                <span className="text-lg">📷</span>
-              </div>
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
-                <span className="text-lg">🔗</span>
-              </div>
+
+              {/* GitHub */}
+              <a
+                href="https://github.com/rudranshchouksey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer"
+              >
+                <GithubIcon className="text-gray-600" />
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/rudranshchouksey/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer"
+              >
+                <Instagram className="text-gray-600" />
+              </a>
+
+              {/* Twitter / X */}
+              <a
+                href="https://x.com/RudraChouksey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer"
+              >
+                <Twitter className="text-gray-600" />
+              </a>
+
             </div>
+
 
             <button
               onClick={handleContactClick}
@@ -91,7 +115,7 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <p className="text-s text-gray-700 leading-relaxed">
+              <p className="text-s text-gray-700 font-sans leading-relaxed">
                 I'm Rudransh Chouksey, a passionate Full-Stack Developer & DevOps Engineer with over 4 years of experience crafting exceptional digital solutions. I blend innovative development with robust technical infrastructure to deliver outstanding web experiences that drive real business results.
               </p>
 
@@ -107,7 +131,7 @@ export default function AboutSection() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
                       viewport={{ once: true }}
-                      className="px-6 py-3 bg-[#D8DFE5] text-gray-500 rounded-full text-s font-medium hover:bg-[#D8DFE5] transition-colors"
+                      className="px-6 py-3 bg-[#D8DFE5] text-gray-500 rounded-full text-s font-medium font-sans hover:bg-[#D8DFE5] transition-colors"
                     >
                       {skill}
                     </motion.span>
@@ -127,9 +151,9 @@ export default function AboutSection() {
               >
                 {experience.map((job: ExperienceItem, index: number) => (
                   <div key={index} className="flex items-center rounded-2xl justify-between px-6 py-4 bg-[#D8DFE5] hover:bg-[#D8DFE5]" >
-                    <h4 className=" text-gray-500 text-s">{job.role}</h4>
-                    <p className="text-gray-500 text-s">{job.company}</p>
-                    <span className="text-gray-500 font-semibold text-s ml-8">{job.year}</span>
+                    <h4 className=" text-gray-600 font-sans text-s">{job.role}</h4>
+                    <p className="text-gray-600 font-sans text-s">{job.company}</p>
+                    <span className="text-gray-600 font-semibold font-sans text-s ml-8">{job.year}</span>
                   </div>
                 ))}
               </motion.div>

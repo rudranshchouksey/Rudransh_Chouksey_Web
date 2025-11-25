@@ -34,13 +34,13 @@ export default function CTASection() {
           </motion.div>
 
           {/* 2. Typography */}
-          <h2 className="text-5xl md:text-7xl font-medium text-slate-900 mb-6 tracking-tight">
+          <h2 className="text-[48px] md:text-7xl font-normal font-sans text-slate-900 mb-4 tracking-tight">
             Tell Me About Your Next
             <br />
             Creative Project
           </h2>
 
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-4 leading-relaxed">
             Let's create captivating digital experiences that engage audiences and drive
             meaningful brand interactions across diverse platforms
           </p>
@@ -78,7 +78,7 @@ export default function CTASection() {
 
         {/* Left: Copyright */}
         <div>
-          © 2024 Portfoy Template
+          © 2025 Rudransh Chouksey
         </div>
 
         {/* Center Spacer */}
@@ -87,10 +87,10 @@ export default function CTASection() {
         {/* Right: Credits */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-center">
           <span>
-            Made by <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">Framebase</a>
+            Made by <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">Me</a>
           </span>
           <span>
-            Built in <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">Framer</a>
+            Built in <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">2025</a>
           </span>
         </div>
       </div>

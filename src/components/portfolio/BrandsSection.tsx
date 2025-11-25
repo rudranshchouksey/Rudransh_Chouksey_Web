@@ -47,22 +47,23 @@ const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
 
 export default function BrandsSection() {
   const brands: Brand[] = [
-    { name: "TechFlow", logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=120&q=80" },
-    { name: "StartupLab", logo: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=120&q=80" },
-    { name: "BrandCorp", logo: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=120&q=80" },
-    { name: "DesignStudio", logo: "https://images.unsplash.com/photo-1611162617263-4ec3f0b8721e?w=120&q=80" },
-    { name: "InnovateCo", logo: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=120&q=80" },
-    { name: "CreativeHub", logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=120&q=80" },
-    { name: "FutureTech", logo: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=120&q=80" },
-    { name: "PixelPerfect", logo: "https://images.unsplash.com/photo-1611162617263-4ec3f0b8721e?w=120&q=80" },
-  ];
+  { name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
+  { name: "Amazon Web Services", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
+  { name: "Stripe", logo: "https://upload.wikimedia.org/wikipedia/commons/0/01/Stripe_Logo%2C_revised_2016.svg" },
+  { name: "Figma", logo: "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" },
+  { name: "Slack", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" },
+  { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" },
+  { name: "Shopify", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" },
+  { name: "Linear", logo: "https://seeklogo.com/images/L/linear-logo-7E77827F6E-seeklogo.com.png" }
+];
+
 
   const duplicatedBrands: Brand[] = [...brands, ...brands];
 
   const stats: Stat[] = [
     { value: 50, suffix: "+", label: "Happy Clients" },
     { value: 100, suffix: "+", label: "Projects Delivered" },
-    { value: 5, suffix: "+", label: "Years Experience" },
+    { value: 3, suffix: "+", label: "Years Experience" },
     { value: 99, suffix: "%", label: "Client Satisfaction" }
   ];
 
@@ -85,7 +86,7 @@ export default function BrandsSection() {
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-medium text-slate-900 mb-6">
+          <h2 className="text-[48px] md:text-6xl font-normal font-sans text-slate-900 mb-4">
             Brands I Work With
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
@@ -122,7 +123,7 @@ export default function BrandsSection() {
         </div>
 
         {/* STATS SECTION */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -133,7 +134,7 @@ export default function BrandsSection() {
               whileHover={{ y: -5 }}
               className="bg-white rounded-[2rem] p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100"
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </h3>
               <p className="text-slate-500 font-medium text-sm md:text-base">

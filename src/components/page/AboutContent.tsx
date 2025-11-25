@@ -10,7 +10,6 @@ import {
   Calendar,
   Code,
   Palette,
-  Zap,
   Users,
   Award,
   Terminal,

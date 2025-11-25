@@ -15,26 +15,37 @@ export default function FAQSection() {
 
   const faqs: FAQ[] = [
     {
-      question: "What services do you offer?",
-      answer: "I specialize in web design, branding, UI/UX, and Framer development, creating modern, user-friendly experiences tailored to your needs"
+      question: "What services do you provide?",
+      answer:
+        "I build end-to-end digital solutions including full-stack web development, modern UI/UX design, scalable backend architecture, AI/ML integrations, cloud deployment, and performance optimization—delivering production-ready applications using Next.js, TypeScript, Node.js, and Tailwind."
     },
     {
-      question: "Do you provide revisions?",
-      answer: "Yes, I include multiple revision rounds in my packages to ensure the final design perfectly matches your vision and requirements."
+      question: "Do you handle both design and development?",
+      answer:
+        "Yes. I start by designing clean, intuitive interfaces and then transform them into fully functional, high-performance applications. This ensures a seamless workflow and consistent experience from concept to deployment."
     },
     {
-      question: "How do I start working with you?",
-      answer: "Simply reach out through the contact form or book a discovery call. We'll discuss your project goals and create a tailored proposal."
+      question: "What is your working process?",
+      answer:
+        "We begin with a strategy call to understand goals and requirements, followed by wireframes and UI/UX design. Once approved, I develop the application, integrate backend and APIs, perform testing, and launch to production with post-deployment support."
     },
     {
-      question: "What is your pricing structure?",
-      answer: "Pricing varies based on project scope and complexity. I offer both fixed-price packages and hourly rates depending on your needs."
+      question: "How much does a project cost?",
+      answer:
+        "Pricing depends on complexity, features, and timelines. I offer flexible models—fixed-price packages for standard business websites and hourly or milestone-based pricing for advanced platforms. A detailed quote is shared after the discovery call."
     },
     {
-      question: "How long does a project take?",
-      answer: "Timelines depend on the project size. A standard website typically takes 2-4 weeks, while complex applications may take longer."
+      question: "How long does it take to build a project?",
+      answer:
+        "A standard portfolio or business website typically takes 1–3 weeks. Full-stack applications with dashboards, authentication, and integrations take 4–8 weeks. AI/ML powered systems or large-scale platforms may require longer depending on scope."
+    },
+    {
+      question: "Do you offer support after launch?",
+      answer:
+        "Absolutely. I provide ongoing maintenance, performance improvements, feature updates, and technical guidance to ensure your product continues to scale smoothly."
     }
   ];
+
 
   const toggleFAQ = (index: number): void => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -60,7 +71,7 @@ export default function FAQSection() {
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-medium text-slate-900 mb-6">
+          <h2 className="text-[56px] md:text-5xl font-normal font-sans text-slate-900 mb-4">
             Questions? Answers!
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -108,13 +119,13 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden"
+                className="bg-white rounded-2xl p-0 shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="w-full px-8 py-6 text-left flex items-start justify-between hover:bg-slate-50 transition-colors gap-4"
                 >
-                  <h3 className="text-lg font-semibold text-slate-800 pt-1">
+                  <h3 className="text-base font-sans font-semibold text-slate-800 p-0">
                     {faq.question}
                   </h3>
                   {/* Chevron Icon Handling */}
@@ -136,8 +147,8 @@ export default function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-8 pt-0">
-                        <p className="text-slate-500 leading-relaxed">
+                      <div className="px-3 pb-3 pt-0">
+                        <p className="text-slate-500 font-sans text-sm leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>

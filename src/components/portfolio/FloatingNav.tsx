@@ -81,14 +81,19 @@ export default function FloatingNav() {
           </motion.div>
         </Link>
         
-        <motion.button 
-          onClick={handleGetTemplate}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold transition-colors hover:from-purple-400 hover:to-pink-400"
+        <Link
+          href="https://drive.google.com/file/d/1n-440fHBHOlmWhfXQGFwZuYXNS36Ds6O/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Get Template
-        </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold transition-colors hover:from-purple-400 hover:to-pink-400"
+          >
+            Get Resume
+          </motion.button>
+        </Link>
       </motion.div>
     </motion.nav>
   );

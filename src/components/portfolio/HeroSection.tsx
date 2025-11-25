@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
-
+import Link from "next/link";
 
 export default function HeroSection() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -101,6 +101,7 @@ export default function HeroSection() {
   }, []);
 
   return (
+    <main>
     <section className="min-h-screen flex items-center justify-center px-6 py-1 relative overflow-hidden">
       {/* Enhanced 3D Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -203,13 +204,19 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.8 }}
             className="flex items-center justify-center gap-4 flex-wrap"
           >
-            <motion.button
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full hover:shadow-2xl transition-all duration-300 font-medium"
+            <Link
+              href="https://drive.google.com/file/d/1n-440fHBHOlmWhfXQGFwZuYXNS36Ds6O/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Get Template
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full hover:shadow-2xl transition-all duration-300 font-medium"
+              >
+                Get Resume
+              </motion.button>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
@@ -221,5 +228,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
     </section>
+    </main>
+
   );
 }

@@ -273,7 +273,7 @@ export function ScrollProjectSlideshow() {
         <div className="h-full relative overflow-hidden">
           <Link href="/contact">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-2sS1Rsr3108WwY3qCo2TjXCfNvaQqv.png"
+              src="/get-in-touch.png"
               alt="Get in touch"
               className="absolute inset-0 w-full h-full object-cover cursor-pointer"
             />

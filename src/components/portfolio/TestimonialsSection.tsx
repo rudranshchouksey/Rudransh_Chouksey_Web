@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Users } from "lucide-react";
+import { AnimatedTestimonials } from "../ui/animated-testimonials";
 
 interface CaseStudy {
   id: number;
@@ -14,39 +15,49 @@ interface CaseStudy {
 }
 
 export default function WorkSection() {
-  const cases: CaseStudy[] = [
+  const testimonials = [
     {
-      id: 1,
-      client: "NeuroScope™",
-      category: "Product Design",
-      description: "Exceptional craftsmanship transformed our ideas into reality",
-      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop",
-      cols: "md:col-span-2"
+      quote:
+        "Rudransh delivered beyond expectations. The product performance and UX improved dramatically.",
+      name: "Sarah Chen",
+      designation: "Product Manager • TechFlow",
+      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
     },
     {
-      id: 2,
-      client: "NovaWorks®",
-      category: "Digital Branding",
-      description: "Impeccable design and precision turned our ideas into stunning reality",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
-      cols: "md:col-span-4"
+      quote:
+        "The development quality and scalability truly stand out. Smooth collaboration throughout.",
+      name: "Michael Rodriguez",
+      designation: "CTO • InnovateSphere",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
     },
     {
-      id: 3,
-      client: "CosmoVision™",
-      category: "UI/UX Design",
-      description: "A perfect blend of creativity and functionality exceeded expectations",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
-      cols: "md:col-span-3"
+      quote:
+        "Flawless execution from design to deployment — the experience has been incredible.",
+      name: "Emily Watson",
+      designation: "Operations Director • CloudScale",
+      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f",
     },
     {
-      id: 4,
-      client: "LumiSphere®",
-      category: "Interface Design",
-      description: "Brilliant design and meticulous execution effortlessly made our ideas shine",
-      image: "https://images.unsplash.com/photo-1532328018366-261543da6586?q=80&w=1000&auto=format&fit=crop",
-      cols: "md:col-span-3"
-    }
+      quote:
+        "Exceptional craftsmanship transformed our ideas into reality. Truly impressed with the clarity and precision of execution.",
+      name: "Meet Ai™",
+      designation: "Product Design",
+      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop",
+    },
+    {
+      quote:
+        "Impeccable design and precision turned our ideas into stunning reality. The brand identity feels powerful and premium.",
+      name: "The Archverse®",
+      designation: "Digital Branding",
+      src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
+    },
+    {
+      quote:
+        "A perfect blend of creativity and functionality exceeded expectations. Loved the clean workflow and attention to detail.",
+      name: "Variable Designer",
+      designation: "UI/UX Design",
+      src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
+    },
   ];
 
   return (
@@ -68,7 +79,7 @@ export default function WorkSection() {
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-medium text-slate-900 mb-6">
+          <h2 className="text-3xl md:text-6xl font-normal font-sans text-slate-900 mb-4">
             Hear from Satisfied Clients
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
@@ -76,57 +87,7 @@ export default function WorkSection() {
           </p>
         </motion.div>
 
-        {/* 6-COLUMN GRID LAYOUT */}
-        <div className="grid md:grid-cols-6 gap-6 mb-20">
-          {cases.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer ${item.cols}`}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={item.image}
-                  alt={item.client}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              {/* BLUR MASK LAYER */}
-              <div
-                className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent backdrop-blur-sm"
-                style={{
-                  maskImage: 'linear-gradient(to top, black 0%, black 40%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to top, black 0%, black 40%, transparent 100%)'
-                }}
-              />
-
-              {/* Content Overlay */}
-              <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end items-start text-white z-10">
-                <div className="mb-4 inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-medium tracking-wide text-white shadow-lg">
-                  {item.category}
-                </div>
-
-                <h3 className="text-3xl md:text-4xl font-semibold mb-3 tracking-tight group-hover:text-blue-100 transition-colors drop-shadow-sm">
-                  {item.client}
-                </h3>
-
-                <div className="flex items-end justify-between w-full gap-4">
-                  <p className="text-slate-200 text-base md:text-lg leading-relaxed max-w-md line-clamp-2 drop-shadow-sm">
-                    {item.description}
-                  </p>
-                  <div className="hidden md:flex w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 border border-white/20">
-                    <ArrowUpRight className="w-5 h-5 text-white" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <AnimatedTestimonials autoplay testimonials={testimonials} className="pt-0.5"/>
 
         {/* === NEW: TRUSTED BY SECTION (BOTTOM) === */}
         <motion.div

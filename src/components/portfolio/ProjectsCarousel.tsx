@@ -151,7 +151,7 @@ export default function ProjectsCarousel() {
                   {/* Project info */}
                   <div className="p-6">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-purple-700">
+                      <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-purple-700">
                         {project.title}
                       </h3>
                       <motion.div

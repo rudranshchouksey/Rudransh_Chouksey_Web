@@ -6,7 +6,6 @@ import ProcessSection from "@/components/portfolio/ProcessSection";
 import ComparisonSection from "@/components/portfolio/ComparisonSection";
 import FAQSection from "@/components/portfolio/FAQSection";
 import TestimonialsSection from "@/components/portfolio/TestimonialsSection";
-import BrandsSection from "@/components/portfolio/BrandsSection";
 import CTASection from "@/components/portfolio/CTASection";
 
 export default function HomePage() {
@@ -19,7 +18,6 @@ export default function HomePage() {
       <ProcessSection />
       <FAQSection />
       <TestimonialsSection />
-      <BrandsSection />
       <CTASection />
     </div>
   );
