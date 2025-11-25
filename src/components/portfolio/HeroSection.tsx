@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -133,9 +134,11 @@ export default function HeroSection() {
               transition={{ type: "spring", stiffness: 300 }}
               className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
             >
-              <img
+              <Image
                 src="/rudransh-chouksey.jpg"
                 alt="Rudransh Chouksey"
+                width={800}          // or any safe large width
+                height={800}         // height ratio will follow object-cover
                 className="w-full h-full object-cover rounded-2xl"
               />
             </motion.div>
@@ -147,7 +150,7 @@ export default function HeroSection() {
               className="text-6xl font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
-              I'm Rudransh
+              I&apos;m Rudransh
             </motion.h1>
 
           </div>
@@ -167,9 +170,11 @@ export default function HeroSection() {
                 transition={{ type: "spring", stiffness: 400 }}
                 className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
               >
-                <img
+                <Image
                   src="/clouds.avif"
-                  alt="Rudransh Chouksey"
+                  alt="Background Clouds"
+                  width={1200}      // safe width
+                  height={800}      // safe height (aspect won't matter because of w-full h-full)
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </motion.div>
@@ -178,9 +183,11 @@ export default function HeroSection() {
                 transition={{ type: "spring", stiffness: 400 }}
                 className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
               >
-                <img
+                <Image
                   src="/moon.avif"
-                  alt="Rudransh Chouksey"
+                  alt="Moon Illustration"
+                  width={1200}      // safe width
+                  height={800}      // safe height, aspect controlled by CSS
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </motion.div>

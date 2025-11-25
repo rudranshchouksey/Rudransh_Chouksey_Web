@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion, useScroll } from "framer-motion"
 import Link from "next/link";
 import projects from "@/data/projects"
+import Image from "next/image";
 
 interface Project {
   id: string
@@ -45,16 +46,23 @@ const stats = [
   { label: "Brand visibility", value: "+266%", description: "" },
 ]
 
-export function ScrollProjectSlideshow() {
+const ScrollProjectSlideshow = () => {
+  const [isClient, setIsClient] = useState(false);
+
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeProject, setActiveProject] = useState(0)
   const [showIntro, setShowIntro] = useState(true)
   const [showClients, setShowClients] = useState(false)
   const [showContact, setShowContact] = useState(false)
 
-  const { scrollY } = useScroll()
+  // 2️⃣ This effect marks hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+
     const handleScroll = () => {
       const scrollTop = window.scrollY
       const windowHeight = window.innerHeight
@@ -94,7 +102,7 @@ export function ScrollProjectSlideshow() {
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isClient])
 
   const getProjectOpacity = (index: number) => {
     const scrollTop = window.scrollY
@@ -157,7 +165,9 @@ export function ScrollProjectSlideshow() {
                   backgroundImage: `url(${project.imageUrl || "/placeholder.svg"})`,
                   }}
             >
-              <img
+              <Image
+                width={1920}
+                height={1080}
                 src={project.imageUrl || "/placeholder.svg"}
                 alt=""
                 className="w-full h-full object-cover blur-3xl opacity-10"
@@ -174,7 +184,9 @@ export function ScrollProjectSlideshow() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   <div className="relative transform perspective-1000 rotate-y-12">
-                    <img
+                    <Image
+                      width={900}
+                      height={600}
                       src={project.imageUrl || "/placeholder.svg"}
                       alt={project.title}
                       className="w-full h-auto rounded-lg shadow-2xl"
@@ -272,7 +284,9 @@ export function ScrollProjectSlideshow() {
       >
         <div className="h-full relative overflow-hidden">
           <Link href="/contact">
-            <img
+            <Image
+              width={1920}
+              height={1080}
               src="/get-in-touch.png"
               alt="Get in touch"
               className="absolute inset-0 w-full h-full object-cover cursor-pointer"
@@ -283,3 +297,5 @@ export function ScrollProjectSlideshow() {
     </div>
   )
 }
+
+export default ScrollProjectSlideshow;

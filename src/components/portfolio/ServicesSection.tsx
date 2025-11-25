@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Monitor, Code, LayoutTemplate, PenTool } from "lucide-react";
+import { ArrowRight, Sparkles, Code, LayoutTemplate, PenTool } from "lucide-react";
 import Link from "next/link";
 import BentoGridItem from "../mvpblocks/bento-grid-1";
 import { cn } from "@/lib/utils";

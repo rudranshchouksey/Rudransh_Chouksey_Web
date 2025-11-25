@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
+import Image from "next/image";
 
 interface Experience {
   company: string;
@@ -91,10 +92,11 @@ export default function ExperienceSection() {
                     className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50"
                   >
                     <div className="flex items-center gap-4 mb-4">
-                      <img
+                      <Image
                         src={exp.logo}
                         alt={`${exp.company} logo`}
-                        className="w-10 h-10"
+                        width={10}
+                        height={10}
                       />
                       <div>
                         <h3 className="font-bold text-gray-900 text-lg">{exp.role}</h3>

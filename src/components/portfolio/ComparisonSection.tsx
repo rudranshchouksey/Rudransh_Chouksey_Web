@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRightLeft, Check, ArrowUpRight, X } from "lucide-react";
+import { ArrowRightLeft, Check, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge"; // Adjust path if needed
 
 export default function ComparisonSection() {

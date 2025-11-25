@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, HelpCircle, ArrowUpRight, ArrowRight } from "lucide-react";
+import { Minus, HelpCircle, ArrowUpRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface FAQ {

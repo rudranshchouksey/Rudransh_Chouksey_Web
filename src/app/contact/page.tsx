@@ -23,7 +23,7 @@ export default function ContactPage() {
               Reach Me Anytime
             </h1>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Have questions or need help? We're here for you.
+              Have questions or need help? We&apos;re here for you.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Prefer to Call?</h3>
                     <p className="text-gray-500 mb-6 text-sm leading-relaxed">
-                      Feel free to book a call if that's more convenient and easier for you.
+                      Feel free to book a call if that&apos;s more convenient and easier for you.
                     </p>
                     <a 
                       href="tel:+919630880614" // <--- CHANGE THIS TO YOUR PHONE NUMBER

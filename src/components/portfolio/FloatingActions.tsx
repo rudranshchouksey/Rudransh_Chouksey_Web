@@ -11,11 +11,6 @@ export default function FloatingActions() {
     console.log("Get Portfoy clicked");
   };
 
-  const handleFramerClick = (): void => {
-    // Add your Framer link functionality here
-    window.open("https://framer.com", "_blank");
-  };
-
   return (
     <motion.div 
       initial={{ x: 100, opacity: 0 }}

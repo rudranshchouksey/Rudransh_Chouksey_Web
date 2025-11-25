@@ -43,7 +43,7 @@ export default function ContactForm() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-        <p className="text-gray-600 mb-6">We'll get back to you shortly.</p>
+        <p className="text-gray-600 mb-6">We&apos;ll get back to you shortly.</p>
         <button 
           onClick={() => setIsSubmitted(false)}
           className="text-blue-600 hover:text-blue-700 font-medium"
@@ -62,7 +62,7 @@ export default function ContactForm() {
                though her design is mostly clean text here */}
         </div>
         <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-          I'd love to help! Let me know how
+          I&apos;d love to help! Let me know how
         </h3>
       </div>
 

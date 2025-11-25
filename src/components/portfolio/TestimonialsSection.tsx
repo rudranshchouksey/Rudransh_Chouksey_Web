@@ -2,17 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Users } from "lucide-react";
+import { Users } from "lucide-react";
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
-
-interface CaseStudy {
-  id: number;
-  client: string;
-  category: string;
-  description: string;
-  image: string;
-  cols: string;
-}
+import Image from "next/image";
 
 export default function WorkSection() {
   const testimonials = [
@@ -79,7 +71,7 @@ export default function WorkSection() {
             </div>
           </div>
 
-          <h2 className="text-3xl md:text-6xl font-normal font-sans text-slate-900 mb-4">
+          <h2 className="text-[48px] md:text-6xl font-normal font-sans text-slate-900 mb-4">
             Hear from Satisfied Clients
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
@@ -101,10 +93,12 @@ export default function WorkSection() {
           <div className="flex -space-x-3">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="w-10 h-10 rounded-full border-2 border-[#F2F4F7] overflow-hidden bg-gray-300">
-                <img
+                <Image
                   src={`https://i.pravatar.cc/100?img=${i + 25}`}
                   alt="Innovator"
-                  className="w-full h-full object-cover"
+                  width={100}
+                  height={100}
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
             ))}

@@ -86,7 +86,7 @@ export default function AboutContent() {
                 About Me
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                I'm <span className="font-semibold text-gray-900">Rudransh Chouksey</span>,
+                I&apos;m <span className="font-semibold text-gray-900">Rudransh Chouksey</span>,
                 a Full-Stack Developer and DevOps specialist based in India.
                 I bridge the gap between complex backend architecture and pixel-perfect
                 frontend design, building scalable systems that solve real business problems.
@@ -136,21 +136,21 @@ export default function AboutContent() {
               <p className="text-base text-gray-600 mb-8 leading-relaxed">
                 My journey in technology started with a fascination for data and logic,
                 leading me to publish research on Artificial Neural Networks back in 2019.
-                Since then, I've evolved into a <strong>Full-Stack Engineer</strong> who cares deeply
+                Since then, I&apos;ve evolved into a <strong>Full-Stack Engineer</strong> who cares deeply
                 about the entire product lifecycle—from the first line of code to the final
                 cloud deployment.
               </p>
               <p className="text-base text-gray-600 mb-8 leading-relaxed">
-                Over the last 4+ years, I've worked with global enterprises like <strong>Accenture</strong> and
-                dynamic studios like <strong>The Serif's</strong>. I specialize in the <strong>MERN stack
-                  and Next.js</strong>, but my secret weapon is <strong>DevOps</strong>. I don't just build apps;
+                Over the last 4+ years, I&apos;ve worked with global enterprises like <strong>Accenture</strong> and
+                dynamic studios like <strong>The Serif&apos;s</strong>. I specialize in the <strong>MERN stack
+                  and Next.js</strong>, but my secret weapon is <strong>DevOps</strong>. I don&apos;t just build apps;
                 I architect the pipelines (CI/CD, Docker, Kubernetes) that ensure they run reliably
                 at scale.
               </p>
               <p className="text-base text-gray-600 mb-8 leading-relaxed">
                 Beyond coding, I am deeply passionate about <strong>content creation and marketing</strong>.
                 I believe that building a great product is only half the battle; telling its story through
-                engaging video and visuals is what truly connects it to users. Whether it's optimizing database
+                engaging video and visuals is what truly connects it to users. Whether it&apos;s optimizing database
                 queries or editing a launch video, I thrive on solving complex challenges creatively.
               </p>
             </div>
@@ -298,7 +298,7 @@ export default function AboutContent() {
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             From architecture to deployment, I bring 4+ years of expertise to help you build reliable,
-            high-performance applications. Let's talk.
+            high-performance applications. Let&apos;s talk.
           </p>
           <Link href="/contact">
             <button className="bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-700 hover:scale-105 active:scale-95 transition-all font-medium text-lg shadow-xl">

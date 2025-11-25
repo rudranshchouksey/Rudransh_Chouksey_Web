@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export interface AvatarGroupProps {
   avatars: { src: string; alt?: string; label?: string }[];
@@ -46,7 +47,7 @@ const AvatarGroup = ({
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
             >
-              <img
+              <Image
                 src={avatar.src}
                 alt={avatar.alt || `Avatar ${idx + 1}`}
                 width={size}

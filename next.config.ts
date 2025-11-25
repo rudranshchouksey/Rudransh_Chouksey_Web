@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
       "upload.wikimedia.org",
       "seeklogo.com",
     ], // ✅ allow Unsplash images
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
+    ],
   },
 };
 

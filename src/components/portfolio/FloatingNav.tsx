@@ -6,11 +6,6 @@ import { motion } from "framer-motion";
 import { Home, Briefcase, Settings, Mail, User } from "lucide-react";
 
 export default function FloatingNav() {
-  const handleGetTemplate = (): void => {
-    // Add your get template functionality here
-    console.log("Get Template clicked");
-  };
-
   const handleServicesClick = (): void => {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
   };

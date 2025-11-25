@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GithubIcon, Instagram, Twitter } from "lucide-react";
+import Image from "next/image";
 
 interface ExperienceItem {
   role: string;
@@ -41,10 +42,13 @@ export default function AboutSection() {
           >
             <div className="text-center mb-6 p-0">
               <div className="w-[364px] h-[380px] bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-2xl m-0 p-0 relative overflow-hidden">
-                <img
+                <Image
                   src="/rudransh-chouksey.jpg"
                   alt="Rudransh Chouksey"
-                  className="w-[364px] h-[380px] object-cover"
+                  width={364}
+                  height={380}
+                  className="object-cover w-[364px] h-[380px]"
+                  priority
                 />
               </div>
               <div className="flex items-center justify-center pt-5 gap-2 mb-6">
@@ -116,7 +120,7 @@ export default function AboutSection() {
               className="space-y-8"
             >
               <p className="text-s text-gray-700 font-sans leading-relaxed">
-                I'm Rudransh Chouksey, a passionate Full-Stack Developer & DevOps Engineer with over 4 years of experience crafting exceptional digital solutions. I blend innovative development with robust technical infrastructure to deliver outstanding web experiences that drive real business results.
+                I&apos;m Rudransh Chouksey, a passionate Full-Stack Developer & DevOps Engineer with over 4 years of experience crafting exceptional digital solutions. I blend innovative development with robust technical infrastructure to deliver outstanding web experiences that drive real business results.
               </p>
 
               <hr className="border-gray-200" />

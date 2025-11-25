@@ -41,7 +41,7 @@ export default function CTASection() {
           </h2>
 
           <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Let's create captivating digital experiences that engage audiences and drive
+            Let&apos;s create captivating digital experiences that engage audiences and drive
             meaningful brand interactions across diverse platforms
           </p>
 
