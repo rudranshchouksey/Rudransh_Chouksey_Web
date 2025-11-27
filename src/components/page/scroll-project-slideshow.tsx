@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion, useScroll } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link";
 import projects from "@/data/projects"
 import Image from "next/image";
@@ -134,7 +134,7 @@ const ScrollProjectSlideshow = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -278,7 +278,7 @@ const ScrollProjectSlideshow = () => {
       {/* Contact Section */}
       <motion.div
         className="fixed inset-0"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 50 }}
         animate={{ opacity: showContact ? 1 : 0 }}
         transition={{ duration: 0.5 }}
       >
