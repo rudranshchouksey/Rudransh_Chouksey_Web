@@ -150,7 +150,7 @@ export default function HeroSection() {
           className="space-y-8 pb-10"
         >
           {/* Profile Image and Icons */}
-          <div className="flex items-center justify-center gap-6 flex-wrap">
+          <div className="flex items-center justify-center gap-6 sm:gap-0.5 flex-wrap">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -161,7 +161,7 @@ export default function HeroSection() {
                 alt="Rudransh Chouksey"
                 width={1200}          // or any safe large width
                 height={800}         // height ratio will follow object-cover
-                className="object-cover rounded-2xl h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32"
+                className="object-cover rounded-2xl h-16 w-16 sm:h-10 sm:w-10"
               />
             </motion.div>
 
@@ -169,19 +169,19 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-6xl sm:text-sm font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
+              className="text-6xl sm:text-xs font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
               I&apos;m Rudransh
             </motion.h1>
 
           </div>
-          <div className="flex font-serif items-center justify-center gap-6 mb-12 flex-wrap">
+          <div className="flex font-serif items-center justify-center gap-6 sm:gap-0.5 mb-12 flex-wrap">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-6xl sm:text-sm font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
+              className="text-6xl sm:text-xs font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
               Web Developer
