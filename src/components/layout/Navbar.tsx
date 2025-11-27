@@ -80,7 +80,6 @@ export default function Navbar() {
               >
                 <MobileNavLink href="/about" label="About" onClick={() => setIsMobileMenuOpen(false)} />
                 <MobileNavLink href="/projects" label="Projects" onClick={() => setIsMobileMenuOpen(false)} />
-                <a href="/#services" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800">Services</a>
                 <MobileNavLink href="/contact" label="Contact" onClick={() => setIsMobileMenuOpen(false)} />
                 <Link
                     href="https://drive.google.com/file/d/1n-440fHBHOlmWhfXQGFwZuYXNS36Ds6O/view?usp=sharing"
