@@ -9,7 +9,7 @@ import CTASection from "@/components/portfolio/CTASection";
 // Server Component - Great for SEO and performance
 export default function ContactPage() {
   return (
-    <section className="py-24 px-6 bg-[#F3F5F8]">
+    <section className="pt-24 bg-[#F3F5F8]">
       <div className="min-h-screen bg-[#F3F5F8] font-sans selection:bg-blue-100 selection:text-blue-900">
         
         <div className="max-w-6xl mx-auto px-6 py-12">
