@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Minus, HelpCircle, ArrowUpRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 
 interface FAQ {
   question: string;
@@ -52,8 +53,8 @@ export default function FAQSection() {
   };
 
   return (
-    // UPDATED BACKGROUND COLOR to match the darker gray-blue reference
-    <section className="py-24 px-6" style={{ backgroundColor: '#DCE3E8' }}>
+    // 1. Responsive Padding: py-16 for mobile, py-24 for desktop
+    <section className="py-16 md:py-24 px-4 md:px-6 rounded-[40px] md:rounded-[56px]" style={{ backgroundColor: '#DCE3E8' }}>
       <div className="max-w-6xl mx-auto">
 
         {/* HEADER */}
@@ -62,25 +63,32 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-[0_2px_10px_rgb(0,0,0,0.05)] border border-gray-100">
-              <HelpCircle className="w-4 h-4 text-slate-900" />
-              <span className="text-sm font-semibold text-slate-800 tracking-wide">FAQS</span>
-            </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Badge className="bg-white p-2 text-gray-600 border border-gray-100 shadow-sm rounded-full pr-4 gap-3 hover:bg-white">
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center"
+              >
+                <HelpCircle className="size-4 text-slate-600" />
+              </motion.div>
+              <span className="text-xs font-semibold text-slate-800 tracking-wide">FAQS</span>
+            </Badge>
           </div>
 
-          <h2 className="text-[56px] md:text-5xl font-normal font-sans text-slate-900 mb-4">
+          {/* FIXED: Responsive Typography (text-4xl -> text-5xl) */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-4 tracking-tight">
             Questions? Answers!
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-4">
             Find quick answers to the most common questions about the services offered
           </p>
         </motion.div>
 
-        {/* GRID LAYOUT */}
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
+        {/* GRID LAYOUT: Stack on mobile (grid-cols-1), Side-by-Side on Desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
           {/* LEFT: Get In Touch Card */}
           <motion.div
@@ -88,8 +96,8 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            // Added distinct shadow and pure white background
-            className="bg-white rounded-[2rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-center sticky top-10"
+            // Responsive Padding: p-8 for mobile, p-10 for desktop
+            className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-center lg:sticky lg:top-10"
           >
             <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-100">
               <HelpCircle className="w-6 h-6 text-slate-700" />
@@ -99,12 +107,12 @@ export default function FAQSection() {
               Get In Touch Now!
             </h3>
 
-            <p className="text-slate-500 mb-8 leading-relaxed">
+            <p className="text-slate-500 mb-8 leading-relaxed text-sm md:text-base">
               Still have questions? Feel free to get in touch with us today!
             </p>
 
-            <Link href="/contact" className="block">
-              <button className="w-full bg-slate-900 text-white px-8 py-4 rounded-xl hover:bg-slate-800 transition-all font-semibold flex items-center justify-center gap-2 shadow-lg shadow-slate-900/20">
+            <Link href="/contact" className="block w-full">
+              <button className="w-full bg-slate-900 text-white px-8 py-4 rounded-xl hover:bg-slate-800 transition-all font-semibold flex items-center justify-center gap-2 shadow-lg shadow-slate-900/20 active:scale-95">
                 Ask A Question <ArrowUpRight className="w-4 h-4" />
               </button>
             </Link>
@@ -119,17 +127,18 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl p-0 shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden"
+                className="bg-white rounded-2xl shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-8 py-6 text-left flex items-start justify-between hover:bg-slate-50 transition-colors gap-4"
+                  // Responsive Padding for Click Area
+                  className="w-full px-6 py-5 md:px-8 md:py-6 text-left flex items-start justify-between hover:bg-slate-50 transition-colors gap-4"
                 >
-                  <h3 className="text-base font-sans font-semibold text-slate-800 p-0">
+                  <h3 className="text-base md:text-lg font-sans font-semibold text-slate-800 p-0 leading-snug">
                     {faq.question}
                   </h3>
                   {/* Chevron Icon Handling */}
-                  <div className="flex-shrink-0 mt-1">
+                  <div className="flex-shrink-0 mt-0.5">
                     {openFAQ === index ? (
                       <Minus className="w-5 h-5 text-slate-400" />
                     ) : (
@@ -147,8 +156,8 @@ export default function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-3 pb-3 pt-0">
-                        <p className="text-slate-500 font-sans text-sm leading-relaxed">
+                      <div className="px-6 pb-6 pt-0 md:px-8 md:pb-8">
+                        <p className="text-slate-500 font-sans text-sm md:text-base leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>

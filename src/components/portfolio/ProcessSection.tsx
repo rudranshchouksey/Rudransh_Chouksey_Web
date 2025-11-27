@@ -2,8 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Layers } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Layers } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 
 interface ProcessStep {
   number: string;
@@ -37,14 +38,14 @@ export default function ProcessSection() {
       title: "Launch & Support",
       description: "After thorough testing and deployment, your product goes live. Enjoy continuous support, improvements, and guidance whenever needed.",
       label: "step4",
-    }
+    },
   ];
 
   return (
-    // 1. Background Color: A clean, cool gray to make white pop
-    <section className="py-24 px-6 bg-[#F3F5F8] relative overflow-hidden">
+    // 1. Responsive Padding: py-16 on mobile, py-24 on desktop
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-[#F3F5F8] relative overflow-hidden">
 
-      {/* Optional: Subtle ambient blur blobs behind the content for extra depth */}
+      {/* Subtle ambient blur blobs */}
       <div className="absolute top-0 -left-64 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-3xl -z-10 pointer-events-none" />
       <div className="absolute bottom-0 -right-64 w-[500px] h-[500px] bg-purple-50/50 rounded-full blur-3xl -z-10 pointer-events-none" />
 
@@ -56,26 +57,33 @@ export default function ProcessSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100">
-              <Layers className="w-4 h-4 text-slate-900" />
-              <span className="text-sm font-semibold text-slate-800 tracking-wide">Process</span>
-            </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Badge className="bg-white p-2 text-gray-600 border border-gray-100 shadow-sm rounded-full pr-4 gap-3 hover:bg-white">
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center"
+              >
+                <Layers className="size-4 text-slate-600" />
+              </motion.div>
+              <span className="text-xs font-semibold text-slate-800 tracking-wide">Process</span>
+            </Badge>
           </div>
 
-          <h2 className="text-[56px] md:text-6xl font-normal font-sans text-slate-900 mb-4">
-            From Vision to Execution
+          {/* FIXED: Responsive Font Size */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-4 tracking-tight leading-tight">
+            From Vision <br className="block sm:hidden" /> to Execution
           </h2>
 
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto pb-2 mt-0">
+          <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto pb-2 mt-0 px-4">
             A refined design process that ensures consistency, creativity for every project
           </p>
         </motion.div>
 
         {/* CARDS GRID */}
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <div className="grid md:grid-cols-2 gap-6 mb-8 md:mb-5">
           {steps.map((step: ProcessStep, index: number) => (
             <motion.div
               key={step.number}
@@ -83,9 +91,11 @@ export default function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-white/50 flex flex-col h-[292px] hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1"
+              // Responsive Padding: p-8 on mobile, p-10 on desktop
+              // h-auto on mobile to fit content, fixed height on desktop for alignment
+              className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-white/50 flex flex-col h-auto md:h-[292px] hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1"
             >
-              <div className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md">
                 {step.number}
               </div>
 
@@ -93,11 +103,11 @@ export default function ProcessSection() {
                 {step.title}
               </h3>
 
-              <p className="text-slate-500 text-base leading-relaxed mb-2 flex-1">
+              <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-4 flex-1">
                 {step.description}
               </p>
 
-              <div className="w-full border-b-2 border-dotted border-slate-100 mb-6"></div>
+              <div className="w-full border-b-2 border-dotted border-slate-100 mb-4 md:mb-6"></div>
 
               <div className="text-right pb-0">
                 <div className="inline-block bg-slate-50 px-4 py-2 rounded-xl">
@@ -111,27 +121,31 @@ export default function ProcessSection() {
         </div>
 
         {/* Bottom Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
-        >
-          <Link href="/contact">
-            <button className="bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
-              <ArrowRight className="w-5 h-5 -rotate-45" />
-              Contact Me
-            </button>
-          </Link>
+         {/* 4. BUTTONS: Forced Row Layout for Mobile (Side-by-Side) */}
+          <div className="flex flex-row items-center justify-center gap-3 w-full">
+            
+            {/* Dark Button */}
+            <Link href="/contact" className="flex-1 sm:flex-none">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
+                className="w-full sm:w-auto bg-[#1C2333] text-white px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-slate-900/20 hover:bg-[#2a344a] transition-all"
+              >
+                <ArrowUpRight className="w-5 h-5" /> Contact Me
+              </motion.button>
+            </Link>
 
-          <Link href="/projects">
-            <button className="bg-white text-slate-700 px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-slate-50 transition-colors border border-gray-200 shadow-sm">
-              <ArrowRight className="w-5 h-5" />
-              See Projects
-            </button>
-          </Link>
-        </motion.div>
+            {/* Light Button */}
+            <Link href="/projects" className="flex-1 sm:flex-none">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
+                className="w-full sm:w-auto bg-gradient-to-b from-white to-slate-50 text-slate-700 px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 border border-white/60 shadow-sm hover:bg-white transition-all"
+              >
+                <ArrowRight className="w-5 h-5" /> See Projects
+              </motion.button>
+            </Link>
+          </div>
 
       </div>
     </section>

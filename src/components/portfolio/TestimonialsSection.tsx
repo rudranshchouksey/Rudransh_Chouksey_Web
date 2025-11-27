@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
 import Image from "next/image";
+import { Badge } from "../ui/badge";
 
 export default function WorkSection() {
   const testimonials = [
@@ -53,7 +54,8 @@ export default function WorkSection() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#F2F4F7]">
+    // 1. Responsive Padding: py-16 on mobile, py-24 on desktop
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-[#F2F4F7]">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
@@ -62,32 +64,41 @@ export default function WorkSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-[0_2px_10px_rgb(0,0,0,0.05)] border border-gray-100">
-              <Users className="w-4 h-4 text-slate-900" />
-              <span className="text-sm font-semibold text-slate-800 tracking-wide">Happy Clients</span>
-            </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Badge className="bg-white p-2 text-gray-600 border border-gray-100 shadow-sm rounded-full pr-4 gap-3 hover:bg-white">
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center"
+              >
+                <Users className="size-4 text-slate-600" />
+              </motion.div>
+              <span className="text-xs font-semibold text-slate-800 tracking-wide">Happy Clients</span>
+            </Badge>
           </div>
 
-          <h2 className="text-[48px] md:text-6xl font-normal font-sans text-slate-900 mb-4">
-            Hear from Satisfied Clients
+          {/* FIXED: Responsive Text Sizing */}
+          {/* text-4xl on mobile -> text-5xl on tablet -> text-6xl on desktop */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-4 tracking-tight leading-tight">
+            Hear from <br className="block sm:hidden" /> Satisfied Clients
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          
+          <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto px-4">
             Discover how clients have elevated their digital presence through expert designs
           </p>
         </motion.div>
 
         <AnimatedTestimonials autoplay testimonials={testimonials} className="pt-0.5"/>
 
-        {/* === NEW: TRUSTED BY SECTION (BOTTOM) === */}
+        {/* === TRUSTED BY SECTION (BOTTOM) === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-center gap-4"
+          className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12 md:mt-16"
         >
           {/* Avatar Group */}
           <div className="flex -space-x-3">

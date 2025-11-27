@@ -1,98 +1,87 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import React from 'react';
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { ReactNode } from "react";
 
 interface BentoGridItemProps {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  image?: string;
   className?: string;
-  size?: 'small' | 'medium' | 'large';
+  title?: string | React.ReactNode;
+  description?: string | React.ReactNode;
+  header?: React.ReactNode;
+  icon?: React.ReactNode;
+  image?: string;
+  size?: 'large' | 'small';
 }
 
-const BentoGridItem = ({
+export default function BentoGridItem({
+  className,
   title,
   description,
+  header,
   icon,
   image,
-  className,
   size = 'small',
-}: BentoGridItemProps) => {
-  const variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring' as const, damping: 25 },
-    },
-  };
-
-  // Logic: If it's a large card (3 cols), use the split layout
-  const isWide = size === 'large';
+}: BentoGridItemProps) {
+  
+  const isLarge = size === 'large';
 
   return (
-    <motion.div
-      variants={variants}
+    <div
       className={cn(
-        // 1. Height set to exactly 268px
-        // 2. Padding set to p-5 (20px)
-        // 3. Rounded corners preserved
-        'group relative flex h-[268px] cursor-pointer flex-col justify-between overflow-hidden rounded-[2rem] bg-white p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 hover:shadow-xl transition-all duration-500',
+        // Base: Softer shadow, rounded-3xl (smoother corners), clean white bg
+        "row-span-1 rounded-[32px] group/bento hover:shadow-2xl transition duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-white/60 bg-white overflow-hidden",
+        "flex flex-col", 
+        // Desktop Layout Logic
+        isLarge ? "md:flex-row" : "md:flex-col",
         className
       )}
     >
-      {/* === LAYOUT LOGIC === */}
-
-      {isWide && image ? (
-        // OPTION 1: WIDE CARD (705px) - Split Layout
-        <div className="flex flex-col md:flex-row h-full gap-6 items-center">
-          {/* Image Container - Adjusted width ratio slightly for the new size */}
-          <div className="w-full md:w-[45%] h-full rounded-[1.2rem] overflow-hidden relative bg-gray-100 order-1">
-            <Image
-              src={image}
-              alt={title}
-              width={800}
-              height={600}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-          </div>
-
-          {/* Text Container */}
-          <div className="w-full md:w-[55%] flex flex-col justify-center items-start order-2">
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 transition-colors duration-500 group-hover:bg-slate-900">
-              <div className="text-slate-900 group-hover:text-white transition-colors duration-500">
-                <div className="size-6">
-                  {icon}
-                </div>
-              </div>
-            </div>
-            <h3 className="pt-[20px] mb-2 text-2xl font-serif font-bold text-slate-900">{title}</h3>
-            <p className="text-slate-500 font-sans leading-relaxed text-md line-clamp-3">{description}</p>
-          </div>
+      {/* --- IMAGE SECTION --- */}
+      {image ? (
+        <div 
+          className={cn(
+            "relative overflow-hidden shrink-0",
+            // Mobile: Fixed height
+            "w-full h-52",
+            // Desktop:
+            isLarge 
+              ? "md:h-full md:w-[55%]"   // Give image slightly more width (55%) for impact
+              : "md:h-64 md:w-full"      // Taller image for small cards
+          )}
+        >
+          <Image
+            src={image}
+            alt={typeof title === "string" ? title : "Project Image"}
+            fill
+            className="object-cover p-5 rounded-[32px] transition duration-500 group-hover/bento:scale-105"
+          />
         </div>
-      ) : (
-        // OPTION 2: NARROW CARD (470px) - Vertical Layout
-        <div className="pt-[20px] flex h-full flex-col justify-between">
-          <div>
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 transition-colors duration-500 group-hover:bg-slate-900">
-              <div className="text-slate-900 group-hover:text-white transition-colors duration-500">
-                <div className="size-6">
-                  {icon}
-                </div>
-              </div>
-            </div>
-            <h3 className="pt-[20px] mb-2 text-2xl font-serif font-bold text-slate-900">{title}</h3>
-            <p className="text-slate-500 font-sans leading-relaxed text-md">{description}</p>
-          </div>
+      ) : header}
 
+      {/* --- TEXT SECTION --- */}
+      <div 
+        className={cn(
+          "flex flex-col transition duration-200 p-8", // Increased padding to p-8 for premium feel
+          "justify-between h-full relative",
+          isLarge ? "md:justify-center md:w-[45%]" : ""
+        )}
+      >
+        {/* Floating Icon - THE KEY VISUAL FIX */}
+        {icon && (
+          <div className="mb-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center border border-slate-50">
+            {icon}
+          </div>
+        )}
+        
+        <div>
+          <h3 className="font-serif font-bold text-slate-900 mb-3 text-2xl tracking-tight">
+            {title}
+          </h3>
           
+          <p className="font-sans font-medium text-slate-500 text-[15px] leading-relaxed">
+            {description}
+          </p>
         </div>
-      )}
-    </motion.div>
+      </div>
+    </div>
   );
-};
-
-export default BentoGridItem;
+}

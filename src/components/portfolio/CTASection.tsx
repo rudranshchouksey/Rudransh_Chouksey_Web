@@ -4,13 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Handshake, ArrowUpRight, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/lib/hooks/use-mobile";
 
 export default function CTASection() {
+  const isMobile = useIsMobile()
   return (
-    <section className="pt-24 pb-8 px-6 bg-[#DCE3E8] relative overflow-hidden">
+    // Padding adjusted to match the breathing room in the image
+    <section className="py-20 px-4 bg-[#DCE3E8] rounded-t-[40px] md:rounded-t-[56px] relative overflow-hidden">
 
-      {/* MAIN CONTENT CONTAINER */}
-      <div className="max-w-4xl mx-auto text-center relative z-10 mb-28">
+      <div className="max-w-xl mx-auto text-center relative z-10 mb-10">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -18,52 +20,50 @@ export default function CTASection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* 1. HANDSHAKE ICON with PULSING ANIMATION & NEW GRADIENT */}
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }} // Zoom in to 1.1, then back to 1
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            // CHANGED: Replaced bg-slate-900 with bg-gradient-to-br from-purple-600 to-pink-600
-            // CHANGED: Updated shadow color to match the gradient
-            className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-purple-500/30"
-          >
-            <Handshake className="w-10 h-10 text-white" />
-          </motion.div>
+          {/* 1. ICON: Dark Navy Circle (Matches Image) */}
+          <div className="w-20 h-20 bg-gradient-to-b from-[#243447] to-[#141b25] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-slate-900/20 ring-1 ring-white/10">
+            <Handshake className="w-10 h-10 text-white stroke-[1.5]" />
+          </div>
 
-          {/* 2. Typography */}
-          <h2 className="text-[48px] md:text-7xl font-normal font-sans text-slate-900 mb-4 tracking-tight">
-            Tell Me About Your Next
-            <br />
+          {/* 2. HEADING: Tuned to break exactly like the image on mobile */}
+          {isMobile ? (
+            <h2 className="text-[40px] leading-[1.15] sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-6 tracking-tight">
+            Tell Me About Your<br />
+            Next Creative<br />
+            Project
+          </h2>
+          ) : (
+            <h2 className="text-[40px] leading-[1.15] text-6xl font-normal font-sans text-slate-900 mb-6 tracking-tight">
+            Tell Me About Your Next <br />
             Creative Project
           </h2>
+          )}
 
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Let&apos;s create captivating digital experiences that engage audiences and drive
-            meaningful brand interactions across diverse platforms
+          {/* 3. SUBTEXT */}
+          <p className="text-[15px] sm:text-lg text-slate-500 max-w-xs sm:max-w-md mx-auto mb-10 leading-relaxed font-medium">
+            Let&apos;s create captivating digital experiences that engage audiences and drive meaningful brand interactions across diverse platforms
           </p>
 
-          {/* 3. BUTTONS */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {/* Dark Contact Button */}
-            <Link href="/contact">
+          {/* 4. BUTTONS: Forced Row Layout for Mobile (Side-by-Side) */}
+          <div className="flex flex-row items-center justify-center gap-3 w-full">
+            
+            {/* Dark Button */}
+            <Link href="/contact" className="flex-1 sm:flex-none">
               <motion.button
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-colors"
+                whileTap={{ scale: 0.96 }}
+                className="w-full sm:w-auto bg-[#1C2333] text-white px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-slate-900/20 hover:bg-[#2a344a] transition-all"
               >
                 <ArrowUpRight className="w-5 h-5" /> Contact Me
               </motion.button>
             </Link>
 
-            {/* Light Projects Button */}
-            <Link href="/projects">
+            {/* Light Button */}
+            <Link href="/projects" className="flex-1 sm:flex-none">
               <motion.button
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-white text-slate-700 px-8 py-4 rounded-xl font-semibold flex items-center gap-2 border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm"
+                whileTap={{ scale: 0.96 }}
+                className="w-full sm:w-auto bg-gradient-to-b from-white to-slate-50 text-slate-700 px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 border border-white/60 shadow-sm hover:bg-white transition-all"
               >
                 <ArrowRight className="w-5 h-5" /> See Projects
               </motion.button>
@@ -73,25 +73,13 @@ export default function CTASection() {
         </motion.div>
       </div>
 
-      {/* 4. FOOTER LINKS SECTION */}
+      {/* Footer / Credits Section (Optional, kept from previous) */}
       <div className="max-w-6xl mx-auto border-t border-slate-300/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500 font-medium">
-
-        {/* Left: Copyright */}
-        <div>
-          © 2025 Rudransh Chouksey
-        </div>
-
-        {/* Center Spacer */}
-        <div className="md:flex-1"></div>
-
-        {/* Right: Credits */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-center">
-          <span>
-            Made by <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">Me</a>
-          </span>
-          <span>
-            Built in <a href="#" className="text-slate-700 hover:text-slate-900 underline underline-offset-4 decoration-slate-300 transition-colors">2025</a>
-          </span>
+        <div>© 2025 Rudransh Chouksey</div>
+        <div className="hidden md:block md:flex-1"></div>
+        <div className="flex gap-4">
+          <span>Made by <span className="text-slate-700">Me</span></span>
+          <span>Built in <span className="text-slate-700">2025</span></span>
         </div>
       </div>
     </section>

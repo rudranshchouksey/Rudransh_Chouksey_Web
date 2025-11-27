@@ -10,7 +10,7 @@ import CTASection from "@/components/portfolio/CTASection";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#eff2f5]">
       <HeroSection />
       <ServicesSection />
       <AboutSection />
