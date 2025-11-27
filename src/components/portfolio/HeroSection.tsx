@@ -4,10 +4,29 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { HoverExpand_001 } from "@/components/ui/skiper-ui/skiper52";
 import Image from "next/image";
 
 export default function HeroSection() {
   const mountRef = useRef<HTMLDivElement | null>(null);
+
+  const images = [
+    {
+      src: "/meet-ai.png",
+      alt: "Description 1",
+      code: "# 01",
+    },
+    {
+      src: "/foodos-cover.png",
+      alt: "Description 2",
+      code: "# 02",
+    },
+    {
+      src: "/rudransh-chouksey.jpg",
+      alt: "Description 2",
+      code: "# 02",
+    },
+  ];
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -103,7 +122,7 @@ export default function HeroSection() {
 
   return (
     <main>
-    <section className="min-h-screen flex items-center justify-center px-6 py-1 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-40 pb-25 relative overflow-hidden">
       {/* Enhanced 3D Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -125,74 +144,78 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="space-y-8"
+          className="space-y-8 pb-10"
         >
           {/* Profile Image and Icons */}
-          <div className="flex items-center justify-center gap-6 flex-wrap">
+          <div className="flex flex-col items-center justify-center gap-4 md:gap-6 flex-wrap">
+
+            {/* Profile Image */}
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
-            >
-              <Image
-                src="/rudransh-chouksey.jpg"
-                alt="Rudransh Chouksey"
-                width={800}          // or any safe large width
-                height={800}         // height ratio will follow object-cover
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-6xl font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
-              style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
-            >
-              I&apos;m Rudransh
-            </motion.h1>
-
-          </div>
-          <div className="flex font-serif items-center justify-center gap-6 mb-12 flex-wrap">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="text-6xl font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
-              style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
-            >
-              Web Developer
-            </motion.h2>
-            <div className="flex gap-4 items-center">
-              <motion.div
-                whileHover={{ scale: 1.15, rotate: -10 }}
-                transition={{ type: "spring", stiffness: 400 }}
-                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
               >
                 <Image
-                  src="/clouds.avif"
-                  alt="Background Clouds"
-                  width={1200}      // safe width
-                  height={800}      // safe height (aspect won't matter because of w-full h-full)
+                  src="/rudransh-chouksey.jpg"
+                  alt="Rudransh Chouksey"
+                  width={1200}
+                  height={800}
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.15, rotate: 10 }}
-                transition={{ type: "spring", stiffness: 400 }}
-                className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
+
+              {/* Title */}
+              <motion.h1
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="
+                  font-serif font-light text-center
+                  text-4xl sm:text-5xl md:text-7xl lg:text-8xl
+                  bg-clip-text text-transparent bg-gradient-to-r
+                  from-gray-900 via-purple-700 to-pink-600
+                "
               >
-                <Image
-                  src="/moon.avif"
-                  alt="Moon Illustration"
-                  width={1200}      // safe width
-                  height={800}      // safe height, aspect controlled by CSS
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              </motion.div>
+                I&apos;m Rudransh
+              </motion.h1>
             </div>
-          </div>
+
+            {/* Subtitle + Icons */}
+            <div className="flex font-serif flex-col md:flex-row items-center justify-center gap-6 mb-12 flex-wrap">
+
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="
+                  text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light
+                  text-center bg-clip-text text-transparent bg-gradient-to-r
+                  from-gray-800 via-purple-600 to-pink-600 mb-4 md:mb-0
+                "
+              >
+                Web Developer
+              </motion.h2>
+
+              {/* Icon Pair */}
+              <div className="flex gap-3 md:gap-4 items-center">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: -10 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className="w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
+                >
+                  <Image src="/clouds.avif" alt="Clouds" width={1200} height={800} className="w-full h-full object-cover rounded-2xl" />
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className="w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
+                >
+                  <Image src="/moon.avif" alt="Moon" width={1200} height={800} className="w-full h-full object-cover rounded-2xl" />
+                </motion.div>
+              </div>
+            </div>
+
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -233,8 +256,12 @@ export default function HeroSection() {
             </motion.button>
           </motion.div>
         </motion.div>
+      
+        <HoverExpand_001 className="items-center justify-center" images={images} />
       </div>
+      
     </section>
+    
     </main>
 
   );
