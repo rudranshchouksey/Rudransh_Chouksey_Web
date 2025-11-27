@@ -122,7 +122,7 @@ export default function HeroSection() {
 
   return (
     <main>
-    <section className="min-h-screen flex items-center justify-center px-6 pt-40 pb-25 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-24 relative overflow-hidden">
       {/* Enhanced 3D Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -151,14 +151,14 @@ export default function HeroSection() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
+              className=" h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
             >
               <Image
                 src="/rudransh-chouksey.jpg"
                 alt="Rudransh Chouksey"
                 width={1200}          // or any safe large width
                 height={800}         // height ratio will follow object-cover
-                className="w-full h-full object-cover rounded-2xl"
+                className="object-cover rounded-2xl h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32"
               />
             </motion.div>
 
@@ -166,7 +166,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-6xl sm:text-lg font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
+              className="text-6xl sm:text-sm font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
               I&apos;m Rudransh
@@ -178,7 +178,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-6xl sm:text-lg font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
+              className="text-6xl sm:text-sm font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
               style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
             >
               Web Developer
@@ -187,27 +187,27 @@ export default function HeroSection() {
               <motion.div
                 whileHover={{ scale: 1.15, rotate: -10 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
+                className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
               >
                 <Image
                   src="/clouds.avif"
                   alt="Background Clouds"
                   width={1200}      // safe width
                   height={800}      // safe height (aspect won't matter because of w-full h-full)
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="wh-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-2xl"
                 />
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.15, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
+                className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
               >
                 <Image
                   src="/moon.avif"
                   alt="Moon Illustration"
                   width={1200}      // safe width
                   height={800}      // safe height, aspect controlled by CSS
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-2xl"
                 />
               </motion.div>
             </div>
