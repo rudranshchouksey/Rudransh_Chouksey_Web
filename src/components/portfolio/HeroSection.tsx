@@ -6,9 +6,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { HoverExpand_001 } from "@/components/ui/skiper-ui/skiper52";
 import Image from "next/image";
+import { useIsMobile } from "@/lib/hooks/use-mobile";
+import { HoverExpand_002 } from "../ui/skiper-ui/skiper53";
 
 export default function HeroSection() {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useIsMobile();
 
   const images = [
     {
@@ -252,8 +255,13 @@ export default function HeroSection() {
             </motion.button>
           </motion.div>
         </motion.div>
-      
-        <HoverExpand_001 className="items-center justify-center" images={images} />
+            <>
+              {isMobile ? (
+                <HoverExpand_002 images={images} />
+              ) : (
+                <HoverExpand_001 images={images} />
+              )}
+            </>
       </div>
       
     </section>

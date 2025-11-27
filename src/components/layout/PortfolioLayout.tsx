@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import FloatingNav from "@/components/portfolio/FloatingNav";
-import FloatingActions from "@/components/portfolio/FloatingActions";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,17 +11,6 @@ interface LayoutProps {
 
 export default function PortfolioLayout({ children }: LayoutProps) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = (): void => {
-      const scrollPosition: number = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleContactScroll = (): void => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -87,7 +74,6 @@ export default function PortfolioLayout({ children }: LayoutProps) {
 
       {/* Top Navigation */}
       <AnimatePresence>
-        {!isScrolled && (
           <motion.nav
             initial={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
@@ -145,16 +131,11 @@ export default function PortfolioLayout({ children }: LayoutProps) {
               </div>
             </div>
           </motion.nav>
-        )}
       </AnimatePresence>
 
       <main className="relative z-10">
         {children}
       </main>
-
-      {/* Floating Bottom Navigation */}
-      <FloatingNav />
-      <FloatingActions />
     </div>
   );
 }
