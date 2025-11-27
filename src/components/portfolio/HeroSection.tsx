@@ -150,71 +150,94 @@ export default function HeroSection() {
           className="space-y-8 pb-10"
         >
           {/* Profile Image and Icons */}
-          <div className="flex items-center justify-center gap-6 sm:gap-0.5 flex-wrap">
+          <div className="flex flex-col items-center justify-center gap-2 w-full px-4">
+          
+          {/* --- ROW 1: Profile Pic + "I'm Rudransh" --- */}
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            {/* Profile Picture */}
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className=" h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl"
+              // Adjusted sizes: w-12/h-12 for mobile, larger for desktop
+              className="h-12 w-12 sm:h-16 sm:w-16 md:h-24 md:w-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl shrink-0"
             >
               <Image
                 src="/rudransh-chouksey.jpg"
                 alt="Rudransh Chouksey"
-                width={1200}          // or any safe large width
-                height={800}         // height ratio will follow object-cover
-                className="object-cover rounded-2xl h-16 w-16 sm:h-10 sm:w-10"
+                width={100}
+                height={100}
+                className="object-cover rounded-xl h-full w-full"
               />
             </motion.div>
 
+            {/* "I'm Rudransh" Text */}
             <motion.h1
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-6xl sm:text-xs font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
-              style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
+              // Fixed fonts: text-4xl for mobile, text-7xl for desktop. Removed 'sm:text-xs'
+              className="text-4xl sm:text-5xl md:text-7xl font-serif font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)",
+              }}
             >
               I&apos;m Rudransh
             </motion.h1>
-
           </div>
-          <div className="flex font-serif items-center justify-center gap-6 sm:gap-0.5 mb-12 flex-wrap">
+
+          {/* --- ROW 2: "Web Developer" + Icons --- */}
+          <div className="flex items-center justify-center gap-3 flex-wrap mt-2 sm:mt-4">
+            {/* "Web Developer" Text */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-6xl sm:text-xs font-serif md:text-8xl font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 mb-8"
-              style={{ backgroundImage: "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)" }}
+              // Fixed fonts: text-4xl for mobile, aligned with the icons
+              className="text-4xl sm:text-5xl md:text-7xl font-serif font-light bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, var(--token-6396e7f2-0645-4f69-9a36-80e94f8ee015, rgb(14, 28, 41)) 34%, var(--token-c630804f-5e50-4893-b680-27b64d932590, rgba(94, 120, 143, 0.5)) 124%)",
+              }}
             >
               Web Developer
             </motion.h2>
-            <div className="flex gap-4 items-center">
+
+            {/* Icons Container */}
+            <div className="flex gap-2 items-center">
+              {/* Cloud Icon */}
               <motion.div
                 whileHover={{ scale: 1.15, rotate: -10 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl"
+                // Adjusted size to match text height on mobile
+                className="h-10 w-10 sm:h-14 sm:w-14 md:h-20 md:w-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-xl"
               >
                 <Image
                   src="/clouds.avif"
-                  alt="Background Clouds"
-                  width={1200}      // safe width
-                  height={800}      // safe height (aspect won't matter because of w-full h-full)
-                  className="wh-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-2xl"
+                  alt="Clouds"
+                  width={100}
+                  height={100}
+                  className="h-full w-full object-cover rounded-xl"
                 />
               </motion.div>
+
+              {/* Moon Icon */}
               <motion.div
                 whileHover={{ scale: 1.15, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-xl"
+                className="h-10 w-10 sm:h-14 sm:w-14 md:h-20 md:w-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center shadow-xl"
               >
                 <Image
                   src="/moon.avif"
-                  alt="Moon Illustration"
-                  width={1200}      // safe width
-                  height={800}      // safe height, aspect controlled by CSS
-                  className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-2xl"
+                  alt="Moon"
+                  width={100}
+                  height={100}
+                  className="h-full w-full object-cover rounded-xl"
                 />
               </motion.div>
             </div>
           </div>
+        </div>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
