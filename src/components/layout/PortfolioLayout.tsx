@@ -1,23 +1,17 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import Navbar from "./Navbar"; // Import the new component
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export default function PortfolioLayout({ children }: LayoutProps) {
-  const pathname = usePathname();
-
-  const handleContactScroll = (): void => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 font-sans relative overflow-x-hidden" style={{ backgroundColor: '#eff2f5' }}>
+      
       {/* 3D Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div
@@ -72,68 +66,12 @@ export default function PortfolioLayout({ children }: LayoutProps) {
         />
       </div>
 
-      {/* Top Navigation */}
-      <AnimatePresence>
-          <motion.nav
-            initial={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-200/50"
-          >
-            <div className="max-w-7xl mx-auto px-6 py-4">
-              <div className="flex items-center justify-between">
-                <Link href="/" className="text-2xl font-light text-gray-900 italic">
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-purple-700 to-pink-600"
-                  >
-                    Rudransh Chouksey
-                  </motion.span>
-                </Link>
+      {/* Insert the separate Navbar component here */}
+      <Navbar />
 
-                <div className="hidden md:flex items-center gap-8">
-                  <Link
-                    href="/about"
-                    className={`text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-medium ${pathname?.includes('/about') ? 'text-purple-600' : ''
-                      }`}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href="/projects"
-                    className={`text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-medium ${pathname?.includes('/projects') ? 'text-purple-600' : ''
-                      }`}
-                  >
-                    Projects
-                  </Link>
-                  <a
-                    href="#services"
-                    className="text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-medium"
-                  >
-                    Services
-                  </a>
-                  <Link
-                    href="/contact"
-                    className={`text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-medium ${pathname?.includes('/contact') ? 'text-purple-600' : ''
-                      }`}
-                  >
-                    Contact
-                  </Link>
-                  <motion.button
-                    onClick={handleContactScroll}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 font-medium"
-                  >
-                    Get In Touch
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.nav>
-      </AnimatePresence>
-
-      <main className="relative z-10">
+      {/* Main Content */}
+      <main className="relative z-10 "> 
+        {/* pt-20 added to push content below fixed navbar */}
         {children}
       </main>
     </div>
