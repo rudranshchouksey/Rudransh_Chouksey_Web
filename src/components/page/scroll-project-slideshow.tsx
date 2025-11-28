@@ -17,12 +17,12 @@ import projects from "@/data/projects";
 // --- INTERFACES ---
 interface ProjectProps {
     id: string;
+    slug: string;
     number?: string;
     title: string;
     description: string;
     imageUrl: string;
     websiteHref: string;
-    caseStudyHref: string;
     meta: {
       role: string;
       platform: string[];
@@ -177,19 +177,22 @@ const StickyProjectCard = ({ project, index, total }: { project: ProjectProps, i
 
                 {/* --- FIXED BUTTONS AREA --- */}
                 <div className="p-4 md:p-8 pt-3 border-t border-slate-50 bg-white z-20 shrink-0">
-                    <div className="flex gap-3">
-                        <Link href={project.websiteHref} target="_blank" className="flex-1">
-                            <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-all text-sm active:scale-95 shadow-lg shadow-slate-900/10">
-                                View Live <ArrowUpRight size={16} />
-                            </button>
-                        </Link>
-                        <Link href={project.caseStudyHref} className="flex-1">
-                            <button className="w-full py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-all text-sm active:scale-95">
-                                Case Study
-                            </button>
-                        </Link>
-                    </div>
-                </div>
+                  <div className="flex gap-3">
+                      {/* View Live Button - Kept same */}
+                      <Link href={project.websiteHref || '#'} target="_blank" className="flex-1">
+                          <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-all text-sm active:scale-95 shadow-lg shadow-slate-900/10">
+                              View Live <ArrowUpRight size={16} />
+                          </button>
+                      </Link>
+
+                      {/* Case Study Button - UPDATED */}
+                      <Link href={`/projects/${project.slug}`} className="flex-1">
+                          <button className="w-full py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-all text-sm active:scale-95">
+                              Case Study
+                          </button>
+                      </Link>
+                  </div>
+              </div>
 
             </div>
         </motion.div>
