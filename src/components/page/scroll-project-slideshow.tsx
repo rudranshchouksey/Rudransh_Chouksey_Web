@@ -22,7 +22,7 @@ interface ProjectProps {
     title: string;
     description: string;
     imageUrl: string;
-    websiteHref: string;
+    websiteHref?: string;
     meta: {
       role: string;
       platform: string[];

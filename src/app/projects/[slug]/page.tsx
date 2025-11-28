@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { 
   ArrowLeft, Globe, Calendar, User, Layers, 
   Target, AlertTriangle, CheckCircle2, TrendingUp, Quote, 
@@ -9,6 +10,33 @@ import {
 } from 'lucide-react';
 import projects from '@/data/projects'; 
 import { FadeIn } from '@/components/ui/Fadein';
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const project = projects.find((p) => p.slug === resolvedParams.slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  return {
+    title: `${project.title} | Rudransh Chouksey`,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      images: [
+        {
+          url: project.imageUrl,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  };
+}
 
 // 1. UPDATE: params is now a Promise
 interface Props {
