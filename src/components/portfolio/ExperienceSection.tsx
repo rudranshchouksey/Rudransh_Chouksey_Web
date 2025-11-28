@@ -111,17 +111,19 @@ export default function ExperienceSection() {
                     {/* Job Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
                       {/* Logo Container - UPDATED FOR VISIBILITY */}
-                      <div className="relative w-14 h-14 flex-shrink-0 bg-white rounded-xl overflow-hidden border border-gray-100 p-2 shadow-sm">
-                        {/* Make sure your images are in the /public folder.
-                           Example: /public/theserifs_logo.jpg
-                        */}
-                        <Image
-                          src={exp.logo} 
-                          alt={`${exp.company} logo`}
-                          width={56} // Explicit width
-                          height={56} // Explicit height
-                          className="object-contain w-full h-full"
-                        />
+                      <div className="relative w-14 h-14 flex-shrink-0 bg-white rounded-xl overflow-hidden border border-gray-100 p-2 shadow-sm flex items-center justify-center">
+                        {/* Fallback to text if image fails, or just use a standard icon */}
+                        {exp.logo ? (
+                          <Image
+                            src={exp.logo} 
+                            alt={`${exp.company} logo`}
+                            width={56}
+                            height={56}
+                            className="object-contain w-full h-full"
+                          />
+                        ) : (
+                          <Briefcase className="w-6 h-6 text-gray-400" />
+                        )}
                       </div>
                       
                       {/* Title & Company */}
