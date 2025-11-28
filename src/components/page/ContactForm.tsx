@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -19,6 +19,7 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,10 +28,29 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setIsSubmitted(true);
+      setFormData({ fullName: "", email: "", subject: "", message: "" }); // Reset form
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -41,7 +61,7 @@ export default function ContactForm() {
         </div>
         <h3 className="text-3xl font-bold text-slate-900 mb-3">Message Sent!</h3>
         <p className="text-slate-500 mb-8 max-w-sm mx-auto">
-          Thanks for reaching out. We&apos;ll get back to you within 24 hours.
+          Thanks for reaching out, Rudransh will get back to you shortly.
         </p>
         <button 
           onClick={() => setIsSubmitted(false)}
@@ -70,7 +90,7 @@ export default function ContactForm() {
             placeholder="Enter your full name"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full px-5 py-4 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
+            className="w-full px-5 py-4 text-blue-800 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
             required
           />
         </div>
@@ -83,7 +103,7 @@ export default function ContactForm() {
             placeholder="Enter your email address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-5 py-4 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
+            className="w-full px-5 text-blue-800 py-4 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
             required
           />
         </div>
@@ -96,7 +116,7 @@ export default function ContactForm() {
             placeholder="Regarding Project"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-5 py-4 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
+            className="w-full px-5 py-4 text-blue-800 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium"
             required
           />
         </div>
@@ -109,11 +129,17 @@ export default function ContactForm() {
             placeholder="Give us more info..."
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-5 py-4 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium resize-none"
+            className="w-full px-5 py-4 text-blue-800 bg-[#F8FAFC] border border-slate-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-900/5 focus:border-slate-300 outline-none transition-all placeholder:text-slate-400 font-medium resize-none"
             required
           />
         </div>
       </div>
+
+      {error && (
+        <div className="text-red-500 text-sm font-medium bg-red-50 p-3 rounded-lg">
+          {error}
+        </div>
+      )}
 
       <button
         type="submit"

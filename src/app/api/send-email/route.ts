@@ -5,20 +5,16 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface EmailRequest {
-  to: string;
-  subject: string;
-  message: string;
   fullName: string;
   email: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
+  subject: string;
+  message: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: EmailRequest = await request.json();
-    const { to, subject, message, fullName, email, projectType, budget, timeline } = body;
+    const { fullName, email, subject, message } = body;
 
     // Validate required fields
     if (!fullName || !email || !subject || !message) {
@@ -28,42 +24,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Format the email content
-    const emailContent = `
-New Portfolio Contact Form Submission
-
-Name: ${fullName}
-Email: ${email}
-Subject: ${subject}
-Project Type: ${projectType || 'Not specified'}
-Budget: ${budget || 'Not specified'}
-Timeline: ${timeline || 'Not specified'}
-
-Message:
-${message}
-
----
-Sent from Portfolio Contact Form
-    `.trim();
-
     const { data, error } = await resend.emails.send({
-      from: 'portfolio@yourdomain.com', // Replace with your verified domain
-      to: [to],
-      subject: subject,
-      text: emailContent,
+      // If you have a verified domain, change this to: 'Portfolio <contact@yourdomain.com>'
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      
+      // Sending strictly to your email as requested
+      to: ['rudranshchouksey@gmail.com'], 
+      
+      // When you click reply in Gmail, it will go to the user who filled the form
+      replyTo: email, 
+      
+      subject: `Portfolio Inquiry: ${subject}`,
+      text: `Name: ${fullName}\nEmail: ${email}\nMessage: ${message}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #e5e5e5; padding-bottom: 10px;">
-            New Portfolio Contact Form Submission
+            New Contact Submission
           </h2>
           
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p><strong>Name:</strong> ${fullName}</p>
             <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
             <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Project Type:</strong> ${projectType || 'Not specified'}</p>
-            <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
-            <p><strong>Timeline:</strong> ${timeline || 'Not specified'}</p>
           </div>
           
           <div style="margin: 20px 0;">
@@ -72,11 +54,6 @@ Sent from Portfolio Contact Form
               <p style="white-space: pre-wrap; margin: 0;">${message}</p>
             </div>
           </div>
-          
-          <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;">
-          <p style="color: #666; font-size: 12px; text-align: center;">
-            Sent from Portfolio Contact Form
-          </p>
         </div>
       `,
     });
@@ -89,7 +66,6 @@ Sent from Portfolio Contact Form
       );
     }
 
-    console.log('Email sent successfully:', data);
     return NextResponse.json({ 
       success: true, 
       message: 'Email sent successfully',
