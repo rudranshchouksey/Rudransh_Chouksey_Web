@@ -126,7 +126,7 @@ const projects: Project[] = [
     description: "An end-to-end workspace operating system built for planning, tracking, and delivering projects with clarity. The ArchVerse Board enables task workflows, team collaboration, sprint planning, real-time updates, and structured documentation—all wrapped in a clean, modern interface.",
     imageUrl: "/archverse-board.png",
     websiteHref: "https://archverse-board.vercel.app/",
-    githubHref: "https://github.com/rudranshchouksey/archverse",
+    githubHref: "https://github.com/rudranshchouksey/Archverse_Board",
     meta: {
       role: "Lead Full-Stack Developer",
       company: "Internal Product",

@@ -49,7 +49,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pb-12 md:pb-20">
           <Link 
-            href="/#projects" 
+            href="/projects" 
             className="inline-flex items-center text-slate-300 hover:text-white mb-6 transition-colors bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-medium border border-white/10"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
