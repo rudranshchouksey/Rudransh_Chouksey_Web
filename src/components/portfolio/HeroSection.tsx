@@ -13,7 +13,6 @@ export default function HeroSection() {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
   
-  // FIX: Add a mounted state to prevent Hydration Errors with isMobile
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export default function HeroSection() {
     const currentMount = mountRef.current;
     if (!currentMount) return;
 
-    // Create scene
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 200 / 200, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -41,7 +39,6 @@ export default function HeroSection() {
     renderer.setClearColor(0x000000, 0);
     currentMount.appendChild(renderer.domElement);
 
-    // Create floating 3D elements
     const geometries: THREE.BufferGeometry[] = [
       new THREE.SphereGeometry(0.5, 32, 32),
       new THREE.OctahedronGeometry(0.6),
@@ -66,7 +63,6 @@ export default function HeroSection() {
       meshes.push(mesh);
     }
 
-    // Add lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -103,7 +99,6 @@ export default function HeroSection() {
   return (
     <main>
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-24 relative overflow-hidden">
-        {/* Enhanced 3D Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{
@@ -126,17 +121,11 @@ export default function HeroSection() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="space-y-6 pb-12"
           >
-            {/* --- LAYOUT FIX STARTS HERE --- */}
             <div className="flex flex-col items-center justify-center w-full px-4">
-              
-              {/* --- ROW 1: Profile Pic + "I'm Rudransh" --- */}
-              {/* Added flex-wrap and justified center to keep them together */}
               <div className="flex items-center justify-center gap-4 flex-wrap">
-                {/* Profile Picture */}
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  // Adjusted sizes: w-12/h-12 for mobile, w-20/h-20 for desktop (Matches Sophie reference balance)
                   className="h-12 w-12 sm:h-16 sm:w-16 md:h-24 md:w-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl shrink-0"
                 >
                   <Image

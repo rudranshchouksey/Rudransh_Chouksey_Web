@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import AboutContent from "@/components/page/AboutContent"; // Adjust path to where your component is
+import AboutContent from "@/components/about-content"; // Adjust path to where your component is
+import HoverPreview  from "@/components/hover-preview";
+import CTASection from "@/components/portfolio/CTASection";
+import OrbitingSkills from "@/components/orbitting-skills";
+import Component from "@/components/image-reveal";
+import ExperienceSection from "@/components/portfolio/ExperienceSection";
+import AwardComponent from "@/components/achivements";
 
 export const metadata: Metadata = {
   title: "About | Rudransh Chouksey",
@@ -12,5 +18,17 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutContent />;
+  return (
+    <main className="overflow-x-hidden">
+      <AboutContent />;
+      <HoverPreview />
+      <div className="flex flex-col md:flex-row gap-6">
+        <OrbitingSkills />
+        <Component />
+      </div>
+      <ExperienceSection />
+      <AwardComponent />
+      <CTASection />
+    </main>
+  )
 }

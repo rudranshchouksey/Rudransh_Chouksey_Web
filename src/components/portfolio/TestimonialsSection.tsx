@@ -1,99 +1,78 @@
-"use client"
+"use client";
 
-import React from "react";
+import * as React from "react";
 import { motion } from "framer-motion";
-import { Users } from "lucide-react";
-import { AnimatedTestimonials } from "../ui/animated-testimonials";
+import { TestimonialSlider } from "@/components/testimonial-slider-1";
 import Image from "next/image";
-import { Badge } from "../ui/badge";
 
-export default function WorkSection() {
-  const testimonials = [
-    {
-      quote:
-        "Rudransh delivered beyond expectations. The product performance and UX improved dramatically.",
-      name: "Sarah Chen",
-      designation: "Product Manager • TechFlow",
-      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
-    },
-    {
-      quote:
-        "The development quality and scalability truly stand out. Smooth collaboration throughout.",
-      name: "Michael Rodriguez",
-      designation: "CTO • InnovateSphere",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    },
-    {
-      quote:
-        "Flawless execution from design to deployment — the experience has been incredible.",
-      name: "Emily Watson",
-      designation: "Operations Director • CloudScale",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f",
-    },
-    {
-      quote:
-        "Exceptional craftsmanship transformed our ideas into reality. Truly impressed with the clarity and precision of execution.",
-      name: "Meet Ai™",
-      designation: "Product Design",
-      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      quote:
-        "Impeccable design and precision turned our ideas into stunning reality. The brand identity feels powerful and premium.",
-      name: "The Archverse®",
-      designation: "Digital Branding",
-      src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      quote:
-        "A perfect blend of creativity and functionality exceeded expectations. Loved the clean workflow and attention to detail.",
-      name: "Variable Designer",
-      designation: "UI/UX Design",
-      src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
-    },
-  ];
+const reviews = [
+  {
+    id: "testimonial-3",
+    name: "James S.",
+    affiliation: "Frontend Developer",
+    quote:
+      "Their innovative solutions and quick turnaround time made our collaboration incredibly successful. Highly recommended!",
+    imageSrc:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
+    thumbnailSrc:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
+  },
+  {
+    id: "testimonial-1",
+    name: "Jessica H.",
+    affiliation: "Web Designer",
+    quote:
+      "The attention to detail and user experience in their work is exceptional. I'm thoroughly impressed with the final product.",
+    imageSrc:
+      "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=800&auto=format&fit=crop",
+    thumbnailSrc:
+      "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=800&auto=format&fit=crop",
+  },
+  {
+    id: "testimonial-2",
+    name: "Lisa M.",
+    affiliation: "UX Designer",
+    quote:
+      "Working with them was a game-changer for our project. Their expertise and professionalism exceeded our expectations.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop",
+    thumbnailSrc:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop",
+  },
+  {
+    id: "testimonial-4",
+    name: "Jane D.",
+    affiliation: "UI/UX Designer",
+    quote:
+      "The quality of work and communication throughout the project was outstanding. They delivered exactly what we needed.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop",
+    thumbnailSrc:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop",
+  },
+];
 
+export default function TestimonialsSection() {
   return (
-    // 1. Responsive Padding: py-16 on mobile, py-24 on desktop
-    <section className="py-16 md:py-24 px-4 md:px-6 bg-[#F2F4F7]">
-      <div className="max-w-7xl mx-auto">
-
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Badge className="bg-white p-2 text-gray-600 border border-gray-100 shadow-sm rounded-full pr-4 gap-3 hover:bg-white">
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center"
-              >
-                <Users className="size-4 text-slate-600" />
-              </motion.div>
-              <span className="text-xs font-semibold text-slate-800 tracking-wide">Happy Clients</span>
-            </Badge>
+    // Section wrapper with matching Hero background
+    <section className="w-full bg-black py-20 relative overflow-hidden" id="reviews">
+       {/* Background Elements */}
+       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
+       
+       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+          
+          {/* Header to match other sections */}
+          <div className="text-center mb-16">
+            <div className="inline-block px-3 py-1 mb-4 text-xs font-medium tracking-wider text-pink-500 uppercase bg-pink-500/10 rounded-full border border-pink-500/20">
+              / Reviews
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500">
+              What People Say
+            </h2>
           </div>
 
-          {/* FIXED: Responsive Text Sizing */}
-          {/* text-4xl on mobile -> text-5xl on tablet -> text-6xl on desktop */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-4 tracking-tight leading-tight">
-            Hear from <br className="block sm:hidden" /> Satisfied Clients
-          </h2>
-          
-          <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto px-4">
-            Discover how clients have elevated their digital presence through expert designs
-          </p>
-        </motion.div>
-
-        <AnimatedTestimonials autoplay testimonials={testimonials} className="pt-0.5"/>
-
-        {/* === TRUSTED BY SECTION (BOTTOM) === */}
-        <motion.div
+          <TestimonialSlider reviews={reviews} />
+          <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -120,8 +99,112 @@ export default function WorkSection() {
             Trusted by 5,000+ innovators worldwide
           </p>
         </motion.div>
-
-      </div>
+       </div>
     </section>
   );
 }
+// "use client";
+
+// import React from "react";
+// import {
+//   CardTransformed,
+//   CardsContainer,
+//   ContainerScroll,
+//   ReviewStars,
+// } from "@/components/animated-cards-stack"; 
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+// const TESTIMONIALS = [
+//   {
+//     id: "testimonial-3",
+//     name: "James S.",
+//     profession: "Frontend Developer",
+//     description: "Their innovative solutions and quick turnaround time made our collaboration incredibly successful. Highly recommended!",
+//     avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
+//   },
+//   {
+//     id: "testimonial-1",
+//     name: "Jessica H.",
+//     profession: "Web Designer",
+//     description: "The attention to detail and user experience in their work is exceptional. I'm thoroughly impressed with the final product.",
+//     avatarUrl: "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=800&auto=format&fit=crop",
+//   },
+//   {
+//     id: "testimonial-2",
+//     name: "Lisa M.",
+//     profession: "UX Designer",
+//     description: "Working with them was a game-changer for our project. Their expertise and professionalism exceeded our expectations.",
+//     avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop",
+//   },
+//   {
+//     id: "testimonial-4",
+//     name: "Jane D.",
+//     profession: "UI/UX Designer",
+//     description: "The quality of work and communication throughout the project was outstanding. They delivered exactly what we needed.",
+//     avatarUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop",
+//   },
+// ];
+
+// export default function TestimonialsSection() {
+//   return (
+//     <section className="bg-black py-20 relative">
+//       <div className="text-center mb-10 px-4">
+//         <h3 className="text-4xl md:text-5xl font-bold text-white">
+//           Testimonials
+//         </h3>
+//         <p className="mx-auto mt-4 max-w-lg text-neutral-400 text-sm md:text-base">
+//           What others are saying about the digital experiences we craft together.
+//         </p>
+//       </div>
+
+//       {/* 1. CONTAINER: Gives us 200vh of scroll space to drive the animation */}
+//       <ContainerScroll className="h-[200vh] w-full">
+        
+//         {/* 2. STICKY WRAPPER: This is the missing piece! 
+//             It pins the cards to the screen while the container scrolls behind it. */}
+//         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+          
+//           <CardsContainer className="mx-auto h-[450px] w-[350px]">
+//             {TESTIMONIALS.map((testimonial, index) => (
+//               <CardTransformed
+//                 key={testimonial.id}
+//                 arrayLength={TESTIMONIALS.length}
+//                 index={index}
+//                 // 3. ROTATION FIX: Overrides the default vertical rotation
+//                 incrementRotation={index * 6 - 15}
+//                 variant="dark"
+//                 className="bg-neutral-900 border-neutral-800"
+//               >
+//                 <div className="flex flex-col items-center space-y-4 text-center">
+//                   <ReviewStars
+//                     rating={testimonial.rating}
+//                     className="text-pink-500"
+//                   />
+//                   <div className="mx-auto w-4/5 text-lg text-neutral-300">
+//                     <blockquote>&quot;{testimonial.description}&quot;</blockquote>
+//                   </div>
+//                 </div>
+                
+//                 <div className="flex items-center gap-4 mt-auto w-full pt-6 border-t border-neutral-800">
+//                   <Avatar className="h-12 w-12 border border-neutral-700">
+//                     <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} />
+//                     <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+//                   </Avatar>
+//                   <div className="text-left">
+//                     <span className="block text-lg font-semibold tracking-tight text-white">
+//                       {testimonial.name}
+//                     </span>
+//                     <span className="block text-sm text-neutral-500">
+//                       {testimonial.profession}
+//                     </span>
+//                   </div>
+//                 </div>
+//               </CardTransformed>
+//             ))}
+//           </CardsContainer>
+
+//         </div>
+//       </ContainerScroll>
+//     </section>
+//   );
+// }

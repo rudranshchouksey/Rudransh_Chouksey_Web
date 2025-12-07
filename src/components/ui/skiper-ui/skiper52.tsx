@@ -10,6 +10,7 @@ import Link from "next/link"; // Import Link
 import { ArrowUpRight } from "lucide-react"; // Import Icon
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const Skiper52 = () => {
   // Added 'link' property to the data
@@ -165,7 +166,7 @@ const HoverExpand_001 = ({
                 )}
               </AnimatePresence>
 
-              <img
+              <Image
                 src={image.src}
                 className={cn(
                     "size-full object-cover transition-transform duration-500",

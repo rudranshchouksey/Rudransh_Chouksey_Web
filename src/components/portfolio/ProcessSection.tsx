@@ -1,5 +1,45 @@
 "use client"
 
+import { FeatureSteps } from "@/components/feature-section"
+
+const features = [
+  {
+    step: 'Step 1',
+    title: 'Connect & Discuss',
+    content: 'Reach out via the contact page and share your project details. We’ll hop on a call to understand your goals, challenges, and vision clearly.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
+  },
+  {
+    step: 'Step 2',
+    title: 'Design & Validate',
+    content: 'I craft clean, modern, and experience-driven UI/UX designs. Together, we refine concepts until the direction aligns perfectly with your ambition.',
+    image: 'https://images.unsplash.com/photo-1586717791821-3f44a5638d48?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    step: 'Step 3',
+    title: 'Build & Develop',
+    content: 'I turn approved designs into a scalable, production-ready application with high performance, strong security, and smooth interactions.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    step: 'Step 4',
+    title: 'Launch & Support',
+    content: 'After thorough testing and deployment, your product goes live. Enjoy continuous support, improvements, and guidance whenever needed.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop'
+  },
+];
+
+export default function ProcessSection() {
+  return (
+      <FeatureSteps 
+        features={features}
+        title="From Vision to Execution"
+        autoPlayInterval={2500}
+        imageHeight="h-[500px]"
+      />
+  )
+}
+/*
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Layers } from "lucide-react";
@@ -45,13 +85,11 @@ export default function ProcessSection() {
     // 1. Responsive Padding: py-16 on mobile, py-24 on desktop
     <section className="py-16 md:py-24 px-4 md:px-6 bg-[#F3F5F8] relative overflow-hidden">
 
-      {/* Subtle ambient blur blobs */}
       <div className="absolute top-0 -left-64 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-3xl -z-10 pointer-events-none" />
       <div className="absolute bottom-0 -right-64 w-[500px] h-[500px] bg-purple-50/50 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
-        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +110,6 @@ export default function ProcessSection() {
             </Badge>
           </div>
 
-          {/* FIXED: Responsive Font Size */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal font-sans text-slate-900 mb-4 tracking-tight leading-tight">
             From Vision <br className="block sm:hidden" /> to Execution
           </h2>
@@ -82,7 +119,6 @@ export default function ProcessSection() {
           </p>
         </motion.div>
 
-        {/* CARDS GRID */}
         <div className="grid md:grid-cols-2 gap-6 mb-8 md:mb-5">
           {steps.map((step: ProcessStep, index: number) => (
             <motion.div
@@ -120,11 +156,8 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        {/* Bottom Buttons */}
-         {/* 4. BUTTONS: Forced Row Layout for Mobile (Side-by-Side) */}
           <div className="flex flex-row items-center justify-center gap-3 w-full">
             
-            {/* Dark Button */}
             <Link href="/contact" className="flex-1 sm:flex-none">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -135,7 +168,6 @@ export default function ProcessSection() {
               </motion.button>
             </Link>
 
-            {/* Light Button */}
             <Link href="/projects" className="flex-1 sm:flex-none">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -151,3 +183,4 @@ export default function ProcessSection() {
     </section>
   );
 }
+*/

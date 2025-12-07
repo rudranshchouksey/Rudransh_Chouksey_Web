@@ -1,140 +1,111 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Code, LayoutTemplate, PenTool, ArrowUpRight } from "lucide-react";
-import Link from "next/link";
-import BentoGridItem from "../mvpblocks/bento-grid-1";
-import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/lib/hooks/use-mobile";
-import { Badge } from "../ui/badge";
+import { 
+  HoverSlider,
+  HoverSliderImage,
+  HoverSliderImageWrap,
+  TextStaggerHover 
+} from "@/components/animated-slideshow";
 
-const items = [
+const SLIDES = [
   {
-    title: "Full-Stack Architecture",
-    description: "Building robust, production-ready applications with Next.js 14, TypeScript, and secure backend integrations.",
-    icon: <Code className="size-5 text-blue-500" />, // Slightly smaller icon inside the circle looks cleaner
-    size: 'large' as const,
-    image: "/web.avif",
+    id: "slide-1",
+    title: "frontend dev",
+    description: "Building responsive, high-performance, and pixel-perfect user interfaces using modern frameworks like React, Next.js, and Tailwind CSS.",
+    imageUrl: "https://images.unsplash.com/photo-1654618977232-a6c6dea9d1e8?q=80&w=2486&auto=format&fit=crop",
   },
   {
-    title: "AI & ML Integration",
-    description: "Embedding intelligent features like computer vision and predictive models directly into modern web interfaces.",
-    icon: <Sparkles className="size-5 text-blue-500" />,
-    size: 'small' as const,
+    id: "slide-2",
+    title: "backend dev",
+    description: "Architecting robust server-side logic, scalable APIs, and secure database schemas to ensure your application runs smoothly under load.",
+    imageUrl: "https://images.unsplash.com/photo-1624996752380-8ec242e0f85d?q=80&w=2487&auto=format&fit=crop",
   },
   {
-    title: "Scalable Systems",
-    description: "Designing efficient database schemas and APIs that ensure performance, security, and ease of maintenance.",
-    icon: <LayoutTemplate className="size-5 text-blue-500" />,
-    size: 'small' as const,
+    id: "slide-6",
+    title: "UI UX design",
+    description: "Crafting intuitive, accessible, and visually stunning digital experiences that align user needs with business goals.",
+    imageUrl: "https://images.unsplash.com/photo-1688733720228-4f7a18681c4f?q=80&w=2487&auto=format&fit=crop",
   },
   {
-    title: "Interactive UI/UX",
-    description: "Crafting pixel-perfect, accessible designs with Tailwind CSS and smooth Framer Motion animations.",
-    icon: <PenTool className="size-5 text-blue-500" />,
-    size: 'large' as const,
-    image: "/des.avif",
+    id: "slide-3",
+    title: "video editing",
+    description: "Transforming raw footage into compelling visual narratives with professional cutting, color grading, and dynamic motion graphics.",
+    imageUrl: "https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=2487&auto=format&fit=crop",
+  },
+  {
+    id: "slide-4",
+    title: "SEO optimization",
+    description: "Enhancing your digital presence through technical audits, keyword strategies, and performance tuning to maximize organic reach.",
+    imageUrl: "https://images.unsplash.com/photo-1726066012698-bb7a3abce786?q=80&w=2487&auto=format&fit=crop",
   },
 ];
 
 export default function ServicesSection() {
-  const isMobile = useIsMobile();
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
   return (
-    // refined background color to match the "cool grey" reference
-    <section className="py-20 md:py-32 px-4 rounded-[56px] md:px-6 bg-[#E3E9F0] overflow-hidden">
-      <div className="mx-auto max-w-7xl">
+    // DARK THEME: bg-black and text-white
+    <HoverSlider className="min-h-screen place-content-center py-20 px-6 md:px-12 bg-black text-white relative overflow-hidden">
+      
+      {/* Background Gradients for depth */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
 
-        {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Badge className="bg-white p-2 text-gray-600 border border-gray-100 shadow-sm rounded-full pr-4 gap-3 hover:bg-white">
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center"
-              >
-                <Sparkles className="size-4 text-slate-600" />
-              </motion.div>
-              <span className="text-xs font-semibold text-slate-800 tracking-wide">Services</span>
-            </Badge>
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        
+        {/* Pink Badge to match Hero */}
+        <div className="mb-12">
+          <div className="inline-block px-3 py-1 text-xs font-medium tracking-wider text-pink-500 uppercase bg-pink-500/10 rounded-full border border-pink-500/20">
+            / our services
           </div>
-
-          <>
-              {isMobile ? (
-                <h2 className="text-4xl sm:text-5xl md:text-7xl font-medium font-sans text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                  Crafting Digital <br className="hidden sm:block" /> Excellence
-                </h2>
-              ) : (
-                <h2 className="text-4xl sm:text-5xl md:text-7xl font-medium font-sans text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                  Crafting Digital Excellence
-                </h2>
-              )}
-            </>
-          
-
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
-            Building smooth and engaging digital interactions that elevate user satisfaction
-          </p>
         </div>
 
-        {/* Grid */}
-        <motion.div
-          className="grid grid-cols-1 gap-5 md:gap-8 md:grid-cols-5"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {items.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              icon={item.icon}
-              image={item.image}
-              size={item.size}
-              className={cn(
-                item.size === 'large' ? 'md:col-span-3' : 'md:col-span-2'
-              )}
-            />
-          ))}
-        </motion.div>
-
-        {/* Bottom Buttons */}
-         {/* 4. BUTTONS: Forced Row Layout for Mobile (Side-by-Side) */}
-          <div className="flex flex-row items-center justify-center gap-3 w-full pt-5">
-            
-            {/* Dark Button */}
-            <Link href="/contact" className="flex-1 sm:flex-none">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.96 }}
-                className="w-full sm:w-auto bg-[#1C2333] text-white px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-slate-900/20 hover:bg-[#2a344a] transition-all"
-              >
-                <ArrowUpRight className="w-5 h-5" /> Contact Me
-              </motion.button>
-            </Link>
-
-            {/* Light Button */}
-            <Link href="/projects" className="flex-1 sm:flex-none">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.96 }}
-                className="w-full sm:w-auto bg-gradient-to-b from-white to-slate-50 text-slate-700 px-4 py-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 border border-white/60 shadow-sm hover:bg-white transition-all"
-              >
-                <ArrowRight className="w-5 h-5" /> See Projects
-              </motion.button>
-            </Link>
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-24">
+          
+          {/* Left Side: Text List */}
+          <div className="flex flex-col space-y-6 w-full lg:w-1/2">
+            {SLIDES.map((slide, index) => (
+              <div key={slide.title} className="group relative border-l-2 border-neutral-800 hover:border-pink-500 transition-colors duration-300 pl-6">
+                {/* Title Trigger */}
+                <TextStaggerHover
+                  index={index}
+                  className="text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter cursor-pointer"
+                  text={slide.title}
+                />
+                
+                {/* Description Reveal */}
+                <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                  <div className="overflow-hidden">
+                    <p className="mt-2 text-lg text-neutral-400 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
+
+          {/* Right Side: Image Display */}
+          <div className="w-full lg:w-1/2 aspect-video relative mt-8 lg:mt-0">
+             {/* Decorative Glow */}
+             <div className="absolute inset-0 bg-pink-600/20 blur-[80px] rounded-full scale-75" />
+             
+            <HoverSliderImageWrap className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden shadow-2xl h-[400px] w-full">
+              {SLIDES.map((slide, index) => (
+                <div key={slide.id} className="w-full h-full relative">
+                  <HoverSliderImage
+                    index={index}
+                    // FIXED: Removed 'imageUrl' prop as it's not in the interface. 'src' is used instead.
+                    src={slide.imageUrl}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
+                  {/* Overlay to ensure text readability if needed, plus style */}
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                </div>
+              ))}
+            </HoverSliderImageWrap>
+          </div>
+        </div>
       </div>
-    </section>
+    </HoverSlider>
   );
 }
