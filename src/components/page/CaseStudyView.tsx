@@ -217,7 +217,7 @@ export default function CaseStudyView({ project }: { project: Project }) {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 md:px-8 flex justify-between items-center pointer-events-none max-w-[100vw] overflow-hidden"
+        className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 py-20 md:py-0 flex justify-between items-center pointer-events-none max-w-[100vw] overflow-hidden"
       >
         <Link href="/" className="pointer-events-auto flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all hover:scale-105 group shadow-2xl shrink-0">
           <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform" />
