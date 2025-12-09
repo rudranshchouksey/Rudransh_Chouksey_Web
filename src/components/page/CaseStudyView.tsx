@@ -106,8 +106,7 @@ const TypewriterText = ({ text, className = "" }: { text: string, className?: st
 
 // --- Interactive Terminal Component ---
 const DeepDiveTerminal = ({ deepDive }: { deepDive: NonNullable<Project['challenges']>['deepDive'] }) => {
-    if (!deepDive) return null;
-
+    // FIX: Moved hooks to the top level, before the early return
     const [activeTab, setActiveTab] = useState<'problem' | 'investigation' | 'solution' | 'result'>('problem');
 
     const tabs = [
@@ -116,6 +115,9 @@ const DeepDiveTerminal = ({ deepDive }: { deepDive: NonNullable<Project['challen
         { id: 'solution', label: 'solution.ts', icon: FileCode, color: 'text-purple-400' },
         { id: 'result', label: 'result.json', icon: FileJson, color: 'text-green-400' },
     ] as const;
+
+    // FIX: Moved the early return here, after hooks are declared
+    if (!deepDive) return null;
 
     const contentMap = {
         problem: deepDive.problem,
@@ -165,9 +167,9 @@ const DeepDiveTerminal = ({ deepDive }: { deepDive: NonNullable<Project['challen
                            </div>
                            <div className="flex-1">
                               <div className="mb-4 text-[10px] md:text-xs text-neutral-500">
-                                 // {deepDive.title}
-                                 <br/>
-                                 // Mode: {activeTab.toUpperCase()}
+                                {"// "}{deepDive.title}
+                                <br />
+                                {"// Mode: "}{activeTab.toUpperCase()}
                               </div>
                               <TypewriterText 
                                 text={contentMap[activeTab]} 
@@ -215,8 +217,7 @@ export default function CaseStudyView({ project }: { project: Project }) {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        // [!code highlight] Added safe horizontal padding and gap protection
-        className="fixed top-4 md:top-6 left-0 w-full z-50  px-4 py-16 md:py-0 flex justify-between items-center pointer-events-none max-w-[100vw] overflow-hidden"
+        className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 md:px-8 flex justify-between items-center pointer-events-none max-w-[100vw] overflow-hidden"
       >
         <Link href="/" className="pointer-events-auto flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all hover:scale-105 group shadow-2xl shrink-0">
           <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform" />
@@ -249,10 +250,8 @@ export default function CaseStudyView({ project }: { project: Project }) {
             style={{ backgroundImage: `url(${project.imageUrl})` }}
           />
           
-          {/* [!code highlight:start] Top Gradient Mask for Navigation Visibility */}
-          {/* This gradient darkens the top area to hide the screenshot's own header/nav */}
+          {/* Top Gradient Mask for Navigation Visibility */}
           <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/90 via-black/50 to-transparent z-10" />
-          {/* [!code highlight:end] */}
 
           {/* Gradients for text readability */}
           <div className="absolute inset-0 bg-black/40 md:bg-transparent" />
@@ -505,7 +504,7 @@ export default function CaseStudyView({ project }: { project: Project }) {
                
                {project.results.testimonial && (
                    <div className="relative p-6 md:p-8 bg-gradient-to-br from-purple-900/20 to-transparent rounded-2xl md:rounded-3xl border border-purple-500/20">
-                      <div className="absolute top-4 left-4 md:top-6 md:left-6 text-4xl md:text-6xl text-purple-500/20 font-serif">"</div>
+                      <div className="absolute top-4 left-4 md:top-6 md:left-6 text-4xl md:text-6xl text-purple-500/20 font-serif">&quot;</div>
                       <p className="relative z-10 text-neutral-200 italic mb-4 md:mb-6 text-sm md:text-lg leading-relaxed">
                         {project.results.testimonial.quote}
                       </p>

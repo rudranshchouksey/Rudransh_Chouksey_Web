@@ -71,12 +71,12 @@ export const TestimonialSlider = ({
 
   const textVariants = {
     enter: (dir: "left" | "right") => ({
-      y: 20,
+      y: dir === "right" ? 20 : -20,
       opacity: 0,
     }),
     center: { y: 0, opacity: 1 },
     exit: (dir: "left" | "right") => ({
-      y: -20,
+      y: dir === "right" ? -20 : 20,
       opacity: 0,
     }),
   };

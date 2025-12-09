@@ -3,6 +3,7 @@
 import { MoveUpRight } from 'lucide-react';
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface ImageData {
   id: number;
@@ -194,10 +195,13 @@ const ImageReveal = React.forwardRef<HTMLDivElement, ComponentProps>(
 
                 {/* Mobile Image Fallback */}
                 {!isDesktop && (
-                <img
-                    src={image.src}
-                    className='absolute right-16 top-1/2 -translate-y-1/2 w-24 h-16 object-cover rounded-md opacity-20'
-                    alt='mobileImg'
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={120}
+                  height={80}
+                  className="absolute right-16 top-1/2 -translate-y-1/2 object-cover rounded-md opacity-20"
+                  sizes="100vw"
                 />
                 )}
             </div>
@@ -206,18 +210,23 @@ const ImageReveal = React.forwardRef<HTMLDivElement, ComponentProps>(
 
         {/* Floating Hover Image */}
         {isDesktop && activeImage && (
-          <img
-            src={activeImage.src}
-            alt={activeImage.alt}
-            className={`fixed object-cover pointer-events-none z-50 w-[350px] h-[450px] rounded-xl shadow-2xl border border-white/10`}
+          <div
             style={{
               left: `${cursorPosition.x}px`,
               top: `${cursorPosition.y}px`,
               transform: `translate(-50%, -50%) scale(${scale})`,
-              opacity: opacity,
-              transition: 'transform 0.1s ease-out, opacity 0.2s ease-out' // Smoother CSS transition
+              opacity,
             }}
+            className="fixed pointer-events-none z-50 rounded-xl shadow-2xl border border-white/10 w-[350px] h-[450px] overflow-hidden"
+          >
+            <Image
+              src={activeImage.src}
+              alt={activeImage.alt}
+              fill
+              className="object-cover"
+              sizes="350px"
           />
+          </div>
         )}
       </div>
     );

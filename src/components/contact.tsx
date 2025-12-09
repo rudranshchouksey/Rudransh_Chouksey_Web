@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, MapPin, Phone, Send, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
+import { Mail, MapPin, Phone, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
 import { SocialLinks } from "@/components/ui/social-links";
 import { motion } from "framer-motion";
 import Link from "next/link";

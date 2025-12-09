@@ -1,13 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { 
-  Settings2, 
-  Command, 
   Zap, 
-  BarChart3, 
-  Users, 
+  BarChart3,
   Layers, 
   ArrowUpRight 
 } from "lucide-react";
@@ -18,7 +15,8 @@ function cn(...classes: (string | undefined | null | false)[]) {
 }
 
 // --- Animation Variants ---
-const containerVariants = {
+
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -31,16 +29,30 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 10 },
+    transition: {
+      // 👇 "spring" is now a literal, not generic string
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 10,
+    },
   },
-};
+} satisfies Variants;
 
 // --- Styled UI Components (Inline for portability) ---
-const Card = ({ className, children }: { className?: string; children: React.ReactNode }) => (
-  <div className={cn(
-    "relative overflow-hidden rounded-xl border border-white/10 bg-neutral-900/50 backdrop-blur-md shadow-sm transition-all hover:bg-neutral-900/80 hover:border-white/20", 
-    className
-  )}>
+
+const Card = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <div
+    className={cn(
+      "relative overflow-hidden rounded-xl border border-white/10 bg-neutral-900/50 backdrop-blur-md shadow-sm transition-all hover:bg-neutral-900/80 hover:border-white/20",
+      className
+    )}
+  >
     {children}
   </div>
 );
@@ -61,7 +73,8 @@ const TechStackCard = () => (
       </div>
       <h3 className="text-lg font-semibold text-white">Tech Stack</h3>
       <p className="mt-2 text-sm text-neutral-400">
-        Built using a modern component-based architecture for maximum performance and scalability.
+        Built using a modern component-based architecture for maximum
+        performance and scalability.
       </p>
     </div>
     <div className="mt-4 flex flex-wrap gap-2">
@@ -81,8 +94,11 @@ const TeamCard = () => (
     </div>
     <div className="flex -space-x-3 overflow-hidden mt-4">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="h-10 w-10 rounded-full border-2 border-[#0a0a0a] bg-neutral-800 flex items-center justify-center text-xs text-neutral-400">
-           U{i}
+        <div
+          key={i}
+          className="h-10 w-10 rounded-full border-2 border-[#0a0a0a] bg-neutral-800 flex items-center justify-center text-xs text-neutral-400"
+        >
+          U{i}
         </div>
       ))}
       <div className="h-10 w-10 rounded-full border-2 border-[#0a0a0a] bg-neutral-800 flex items-center justify-center text-xs text-white">
@@ -102,7 +118,9 @@ const ImpactCard = () => (
       <BarChart3 className="h-4 w-4 text-green-400" />
     </div>
     <div className="mt-2">
-      <span className="text-5xl font-bold text-white tracking-tighter">98<span className="text-2xl text-neutral-500">/100</span></span>
+      <span className="text-5xl font-bold text-white tracking-tighter">
+        98<span className="text-2xl text-neutral-500">/100</span>
+      </span>
     </div>
   </Card>
 );
@@ -124,7 +142,8 @@ const OutcomesCard = () => (
   <Card className="h-full p-6 flex flex-col justify-end bg-neutral-900">
     <h3 className="text-lg font-semibold text-white mb-2">Project Outcome</h3>
     <p className="text-sm text-neutral-400 leading-relaxed">
-      Reduced user onboarding time by 40% and improved data visualization clarity across all dashboards.
+      Reduced user onboarding time by 40% and improved data visualization
+      clarity across all dashboards.
     </p>
   </Card>
 );
@@ -132,8 +151,12 @@ const OutcomesCard = () => (
 const LinksCard = () => (
   <Card className="h-full p-6 flex items-center justify-between group cursor-pointer hover:bg-neutral-800/50">
     <div>
-      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">View Live Deployment</h3>
-      <p className="text-sm text-neutral-500">Experience the application in production.</p>
+      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+        View Live Deployment
+      </h3>
+      <p className="text-sm text-neutral-500">
+        Experience the application in production.
+      </p>
     </div>
     <div className="h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center transition-transform group-hover:rotate-45">
       <ArrowUpRight className="h-5 w-5 text-white" />
@@ -152,7 +175,14 @@ interface BentoGridProps {
   links: React.ReactNode;
 }
 
-const BentoGrid = ({ tech, team, impact, highlight, outcome, links }: BentoGridProps) => {
+const BentoGrid = ({
+  tech,
+  team,
+  impact,
+  highlight,
+  outcome,
+  links,
+}: BentoGridProps) => {
   return (
     <motion.div
       variants={containerVariants}
@@ -175,9 +205,9 @@ const BentoGrid = ({ tech, team, impact, highlight, outcome, links }: BentoGridP
       <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1">
         {impact}
       </motion.div>
-      
-       {/* 4. Highlight: Medium (Right Column vertical) */}
-       <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2">
+
+      {/* 4. Highlight: Medium (Right Column vertical) */}
+      <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2">
         {highlight}
       </motion.div>
 
@@ -199,7 +229,7 @@ export default function ProjectDetails() {
     <section className="w-full bg-[#0a0a0a] px-4 py-20 md:px-10 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 md:mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -207,14 +237,15 @@ export default function ProjectDetails() {
           >
             Omni-Task AI
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-lg text-neutral-400 max-w-2xl"
           >
-            A closer look at the technical implementation and design decisions behind the platform.
+            A closer look at the technical implementation and design decisions
+            behind the platform.
           </motion.p>
         </div>
 
