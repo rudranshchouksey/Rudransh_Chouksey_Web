@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight, ArrowUp, ArrowLeft } from 'lucide-react'; 
-import Link from 'next/link'; // [!code highlight]
+import Link from 'next/link';
 
 // --- Types ---
 type PageType = 'intro' | 'project' | 'outro';
@@ -16,10 +16,10 @@ interface PageData {
   stack?: string[];
   image: string;
   layout: 'left-image' | 'right-image';
-  slug?: string; // [!code highlight] Added slug property
+  slug?: string;
 }
 
-// --- Content Data (Matched with projects.ts) ---
+// --- Content Data ---
 const pages: PageData[] = [
   // 1. INTRO
   {
@@ -42,7 +42,7 @@ const pages: PageData[] = [
     stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2670",
     layout: 'right-image',
-    slug: 'dr-reddys', // [!code highlight] Matches projects.ts
+    slug: 'dr-reddys',
   },
 
   // 3. ArchVerse
@@ -55,7 +55,7 @@ const pages: PageData[] = [
     stack: ["Next.js", "Supabase", "Prisma", "Zustand"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
     layout: 'left-image',
-    slug: 'archverse-os', // [!code highlight] Matches projects.ts
+    slug: 'archverse-os',
   },
 
   // 4. Meet AI
@@ -68,7 +68,7 @@ const pages: PageData[] = [
     stack: ["Next.js", "WebRTC", "OpenAI Realtime", "Tailwind"],
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2532",
     layout: 'right-image',
-    slug: 'meet-ai', // [!code highlight] Matches projects.ts
+    slug: 'meet-ai',
   },
 
   // 5. TeamSync
@@ -81,7 +81,7 @@ const pages: PageData[] = [
     stack: ["Next.js", "Cloudflare DO", "OpenAI", "Stripe"],
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2670",
     layout: 'left-image',
-    slug: 'teamsync-ai', // [!code highlight] Matches projects.ts
+    slug: 'teamsync-ai',
   },
 
   // 6. Foodied
@@ -94,7 +94,7 @@ const pages: PageData[] = [
     stack: ["Next.js", "Node.js", "Socket.io", "MongoDB"],
     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=1981",
     layout: 'right-image',
-    slug: 'foodied', // [!code highlight] Matches projects.ts
+    slug: 'foodied',
   },
 
   // 7. OUTRO
@@ -115,6 +115,10 @@ export default function ScrollAdventure() {
   const numOfPages = pages.length;
   const animTime = 1000;
   const scrolling = useRef(false);
+  
+  // [!code highlight:start] 1. Add Ref for Touch Handling
+  const touchStartY = useRef<number | null>(null);
+  // [!code highlight:end]
 
   // --- Navigation Logic ---
   const navigateUp = () => { if (currentPage > 1) setCurrentPage(p => p - 1); };
@@ -122,7 +126,40 @@ export default function ScrollAdventure() {
   const handleBackToHome = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); };
   const handleRestart = () => { setCurrentPage(1); };
 
-  // --- Scroll Event Listener ---
+  // [!code highlight:start] 2. Add Touch Event Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    
+    const touchEndY = e.changedTouches[0].clientY;
+    const diff = touchStartY.current - touchEndY;
+    const threshold = 50; // Minimum swipe distance in pixels
+
+    if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+            // Swiped Up -> Next Page
+            if (!scrolling.current) {
+                scrolling.current = true;
+                navigateDown();
+                setTimeout(() => (scrolling.current = false), animTime);
+            }
+        } else {
+            // Swiped Down -> Prev Page
+            if (!scrolling.current) {
+                scrolling.current = true;
+                navigateUp();
+                setTimeout(() => (scrolling.current = false), animTime);
+            }
+        }
+    }
+    touchStartY.current = null;
+  };
+  // [!code highlight:end]
+
+  // --- Scroll Event Listener (Desktop) ---
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -133,7 +170,6 @@ export default function ScrollAdventure() {
       const atLastPage = currentPage === numOfPages;
       const atFirstPage = currentPage === 1;
 
-      // Release scroll to main page at boundaries
       if (atLastPage && isScrollingDown) return;
       if (atFirstPage && isScrollingUp) return;
 
@@ -149,7 +185,14 @@ export default function ScrollAdventure() {
   }, [currentPage, numOfPages]);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden w-full h-full bg-[#0a0a0a] group text-white">
+    // [!code highlight:start] 3. Attach handlers and fix height
+    <div 
+        ref={containerRef} 
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="relative overflow-hidden w-full h-[100dvh] bg-[#0a0a0a] group text-white touch-none"
+    >
+    {/* [!code highlight:end] */}
       
       {/* --- Responsive: Global Back Button --- */}
       <button 
@@ -238,7 +281,6 @@ export default function ScrollAdventure() {
                                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                             </button>
                             
-                            {/* [!code highlight:start] Updated Case Study Link */}
                             {page.slug ? (
                                 <Link 
                                     href={`/projects/${page.slug}`}
@@ -251,7 +293,6 @@ export default function ScrollAdventure() {
                                     Coming Soon
                                 </span>
                             )}
-                            {/* [!code highlight:end] */}
                         </div>
                     </div>
                 )}
