@@ -23,7 +23,7 @@ export default function AboutPage() {
     <main className="overflow-x-hidden bg-black min-h-screen">
       <AboutContent />
 
-      <div className="flex flex-col gap-12 md:gap-24 pb-20">
+      <div className="flex flex-col gap-12 md:gap-24">
         
         {/* [!code highlight] Replaced individual components with the Client Wrapper */}
         <AboutVisuals />
