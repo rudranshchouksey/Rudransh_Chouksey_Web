@@ -38,7 +38,7 @@ export default function AboutSection() {
     },
   };
   return (
-    <section className="py-4 px-4 bg-black" ref={heroRef}>
+    <section className="pt-20 px-20 bg-black" ref={heroRef}>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-600/20 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
@@ -72,7 +72,7 @@ export default function AboutSection() {
                 rel="noopener noreferrer"
                 className="md:w-8 md:h-8 sm:w-6 w-5 sm:h-6 h-5 border border-gray-200 bg-gray-100  rounded-lg flex items-center justify-center  cursor-pointer"
               >
-                <Image src="https://pro-section.ui-layouts.com/facebook.svg" alt="fb" width={24} height={24} />
+                <Image src="/github.svg" alt="fb" width={24} height={24} />
               </TimelineContent>
               <TimelineContent
                 as="a"
@@ -84,7 +84,7 @@ export default function AboutSection() {
                 rel="noopener noreferrer"
                 className="md:w-8 md:h-8 sm:w-6 w-5 sm:h-6 h-5 border border-gray-200 bg-gray-100 rounded-lg flex items-center justify-center  cursor-pointer"
               >
-                <Image src="https://pro-section.ui-layouts.com/instagram.svg" alt="insta" width={24} height={24} />
+                <Image src="/instagram.svg" alt="insta" width={24} height={24} />
               </TimelineContent>
               <TimelineContent
                 as="a"
@@ -108,7 +108,7 @@ export default function AboutSection() {
                 rel="noopener noreferrer"
                 className="md:w-8 md:h-8 sm:w-6 w-5 sm:h-6 h-5 border border-gray-200 bg-gray-100 rounded-lg flex items-center justify-center  cursor-pointer"
               >
-                <Image src="https://pro-section.ui-layouts.com/youtube.svg" alt="youtube" width={24} height={24} />
+                <Image src="/twitter-x.svg" alt="youtube" width={24} height={24} />
               </TimelineContent>
             </div>
           </div>

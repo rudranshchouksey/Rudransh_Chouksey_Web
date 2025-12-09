@@ -1,8 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import projects from '@/data/projects'; 
-// Import the new Client Component
-import CaseStudyView from '@/components/page/CaseStudyView';
+import dynamic from 'next/dynamic';
+
+// 1. Lazy Load the Client Component
+// This splits the heavy interaction logic (Framer Motion, 3D cards) from the main bundle.
+const CaseStudyView = dynamic(() => import('@/components/page/CaseStudyView'), {
+  // A dark placeholder ensures smooth visual transition during client-side navigation
+  loading: () => <div className="min-h-screen w-full bg-[#0a0a0a]" />,
+});
 
 interface Props {
   params: Promise<{
@@ -10,6 +16,8 @@ interface Props {
   }>;
 }
 
+// 2. Static Site Generation (SSG)
+// This ensures the HTML is pre-built at build time, serving instantly (TTFB ~50ms).
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -34,6 +42,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
   if (!project) notFound();
 
-  // Pass the data to the client component for animation
+  // 3. Render
+  // The Server Component passes the data; the Client Component handles the animation.
   return <CaseStudyView project={project} />;
 }

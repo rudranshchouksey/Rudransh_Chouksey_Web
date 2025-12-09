@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import PortfolioLayout from "@/components/layout/PortfolioLayout";
 import "./globals.css";
+import GradientMenu from "@/components/gradient-menu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         
-        <PortfolioLayout>
-          {children}
-        </PortfolioLayout>
+        <main className="relative bg-black z-10 overflow-x-hidden"> 
+                {/* pt-20 added to push content below fixed navbar */}
+          <GradientMenu />
+            {children}
+        </main>
       </body>
     </html>
   );

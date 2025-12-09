@@ -323,3 +323,35 @@ nextjs-portal {
 .animate-fadeIn {
   animation: fadeIn 0.25s ease-out forwards;
 }
+
+html.lenis {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Hide scrollbar - Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar - Edge/others */
+body {
+  -ms-overflow-style: none;
+}
