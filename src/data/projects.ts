@@ -762,7 +762,7 @@ const projects: Project[] = [
       collaborate in real-time, and track progress. Built with real-time synchronization, supporting 5,000+ concurrent users, 
       featuring drag-and-drop Kanban boards, live commenting, and presence indicators. Demonstrates full-stack expertise in WebSocket 
       architecture, state management, and scalable system design.`,
-    imageUrl: "/archverse.png",
+    imageUrl: "/archverse-board.png",
     githubHref: "https://github.com/yourusername/archverse",
 
     meta: {
@@ -3663,7 +3663,7 @@ const projects: Project[] = [
       indexing for efficient driver routing, and role-based dashboards for each user type. Features include menu management, order tracking, 
       delivery zone geo-fencing, driver location updates, and PWA capabilities for offline-first driver experience. Demonstrates expertise in 
       multi-sided marketplaces, real-time synchronization across 3 actor types, and location-based services at scale.`,
-    imageUrl: "/foodied.png",
+    imageUrl: "/foodos-cover.png.png",
     websiteHref: "https://github.com/rudranshchouksey/food_delivery_app",
     githubHref: "https://github.com/rudranshchouksey/food_delivery_app",
 
