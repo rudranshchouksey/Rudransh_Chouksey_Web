@@ -35,7 +35,6 @@ const TestimonialsVariant = dynamic(() => import("@/components/portfolio/Testimo
 const CTASection = dynamic(() => import("@/components/portfolio/CTASection"));
 
 export default function HomePage() {
-  const navLinks = [{ label: '', href: '#' }];
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/rudranshchouksey' },
@@ -53,7 +52,7 @@ export default function HomePage() {
          
          <Card className="w-full h-[100dvh] bg-black relative overflow-hidden border-0 rounded-none">
             {/* 3D Scene Container */}
-            <div className="absolute right-0 top-0 h-full w-full lg:w-[75%] z-10 pointer-events-none lg:pointer-events-auto">
+            <div className="absolute right-0 top-0 h-full w-full lg:w-[75%] z-10 pointer-events-auto">
                <SplineScene 
                   scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                   className="w-full h-full"
@@ -76,12 +75,12 @@ export default function HomePage() {
                      I&apos;m Rudransh Chouksey. I build immersive, high-performance web applications that merge creative 3D design with robust engineering.
                   </p>
                   <div className="flex flex-wrap gap-4 mt-8">
-                     <Link href="/#projects">
+                     <Link href="/projects">
                         <Button size="lg" className="bg-white text-black hover:bg-neutral-200 font-semibold px-8 rounded-full transition-transform hover:scale-105">
                            View My Work
                         </Button>
                      </Link>
-                     <Link href="/#contact">
+                     <Link href="/contact">
                         <Button variant="outline" size="lg" className="border-neutral-700 text-white hover:bg-neutral-800 hover:text-white rounded-full bg-transparent transition-transform hover:scale-105">
                            Contact Me
                         </Button>
@@ -93,8 +92,6 @@ export default function HomePage() {
 
          {/* 4. MinimalistHero - Loaded immediately as it's likely visible on larger screens */}
          <MinimalistHero
-            logoText=""
-            navLinks={navLinks}
             mainText="I specialize in bridging the gap between design and development. By combining modern tech stacks like Next.js and TypeScript with creative 3D elements, I turn complex ideas into seamless, interactive realities."
             readMoreLink="/about"
             imageSrc="/rudransh-chouksey-removebg-preview.png"

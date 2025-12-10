@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -76,11 +77,18 @@ function FlipCard({
                 <div
                     className="absolute inset-0 h-full w-full overflow-hidden rounded-lg shadow-xl bg-neutral-950 flex flex-col items-center justify-center p-2 border border-white/20"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                >
-                    <div className="text-center">
-                        <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mb-1">View</p>
-                        <p className="text-[10px] font-medium text-white leading-tight">Case Study</p>
-                    </div>
+                >   
+                    <Link 
+                        href="/projects"
+                        className="text-center pointer-events-auto"
+                    >
+                        <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mb-1">
+                        View
+                        </p>
+                        <p className="text-[10px] font-medium text-white leading-tight">
+                        Case Study
+                        </p>
+                    </Link>
                 </div>
             </motion.div>
         </motion.div>

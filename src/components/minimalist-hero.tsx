@@ -5,8 +5,6 @@ import { cn } from '@/lib/utils';
 
 // Define the props interface for type safety and reusability
 interface MinimalistHeroProps {
-  logoText: string;
-  navLinks: { label: string; href: string }[];
   mainText: string;
   readMoreLink: string;
   imageSrc: string;
@@ -39,8 +37,6 @@ const SocialIcon = ({ href, icon: Icon }: { href: string; icon: LucideIcon }) =>
 
 // The main reusable Hero Section component
 export const MinimalistHero = ({
-  logoText,
-  navLinks,
   mainText,
   readMoreLink,
   imageSrc,
@@ -61,35 +57,6 @@ export const MinimalistHero = ({
       {/* Gradient Overlay for smooth transition from previous section */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black via-black to-transparent z-10 pointer-events-none" />
 
-      {/* Header */}
-      <header className="z-30 flex w-full max-w-7xl items-center justify-between pt-10 md:pt-0">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-xl font-bold tracking-wider text-white"
-        >
-          {logoText}
-        </motion.div>
-        <div className="hidden items-center space-x-8 md:flex">
-          {navLinks.map((link) => (
-            <NavLink key={link.label} href={link.href}>
-              {link.label}
-            </NavLink>
-          ))}
-        </div>
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col space-y-1.5 md:hidden"
-          aria-label="Open menu"
-        >
-          <span className="block h-0.5 w-6 bg-white"></span>
-          <span className="block h-0.5 w-6 bg-white"></span>
-          <span className="block h-0.5 w-5 bg-white"></span>
-        </motion.button>
-      </header>
 
       {/* Main Content Area */}
       <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center md:grid-cols-3 z-20">
