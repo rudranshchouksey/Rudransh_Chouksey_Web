@@ -21,12 +21,17 @@ export default function AboutVisuals() {
     <>
       <HoverPreview />
       <div className="flex flex-col md:flex-row gap-6 px-4 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="w-full md:w-1/2">
-             <OrbitingSkills />
+
+        {/* ORBIT SECTION */}
+        <div className="w-full md:w-1/2 flex items-center justify-center md:justify-start overflow-visible">
+          <OrbitingSkills />
         </div>
-        <div className="w-full md:w-1/2">
-             <ImageReveal />
-          </div>
+
+        {/* IMAGE SECTION */}
+        <div className="w-full md:w-1/2 flex items-center justify-center md:justify-end">
+          <ImageReveal />
+        </div>
+
       </div>
     </>
   );

@@ -26,7 +26,7 @@ const previewData = {
     subtitle: "Built creative digital experiences in a fast-moving design-driven environment.",
   },
   CICDDockerKubernetes: {
-    image: "https://images.unsplash.com/photo-1667372393119-c81c0cda0a29?q=80&w=2532&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1679640034489-a6db1f096b70?q=80&w=1274&auto=format&fit=crop",
     title: "CI/CD & DevOps",
     subtitle: "Automating deployments and scaling infrastructure for resilient production systems.",
   },

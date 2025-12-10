@@ -458,10 +458,26 @@ export default function OrbitingSkills() {
     return () => cancelAnimationFrame(frame);
   }, [isPaused]);
 
+  // ---- RESPONSIVE SIZE CONTROL ----
+  // base size = 480px (because orbit radius = 240px)
+  const BASE_SIZE = 480;
+
+  // scale the orbit based on screen width
+  const scale =
+    typeof window !== "undefined"
+      ? Math.min(window.innerWidth / BASE_SIZE, 1) // scale down on small screens
+      : 1;
+
   return (
-    <main className="w-full flex items-center justify-center overflow-hidden py-14">
+    <main className="w-full flex items-center justify-center overflow-visible py-14">
       <div
-        className="relative w-[450px] h-[450px] flex items-center justify-center"
+        className="relative flex items-center justify-center"
+        style={{
+          width: BASE_SIZE * scale,
+          height: BASE_SIZE * scale,
+          transform: `scale(${scale})`,
+          transformOrigin: "center",
+        }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

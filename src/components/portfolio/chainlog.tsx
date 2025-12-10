@@ -62,7 +62,7 @@ export function ChainLog() {
       title: "May 2025 - Present",
       content: (
         <div>
-          <h3 className="text-xl font-bold text-white mb-1">Lead Full Stack Developer</h3>
+          <h3 className="text-xl font-bold text-white mb-1">Full Stack Developer</h3>
           <p className="text-pink-500 text-sm font-medium mb-4">The Serif&apos;s</p>
           <p className="text-neutral-300 text-xs md:text-sm font-normal mb-8 leading-relaxed">
             Leading full-stack initiatives for 15+ international clients, focusing on scalability and user experience. 
@@ -123,7 +123,7 @@ export function ChainLog() {
       title: "Sep 2021 - May 2025",
       content: (
         <div>
-          <h3 className="text-xl font-bold text-white mb-1">Security Delivery Analyst / SE</h3>
+          <h3 className="text-xl font-bold text-white mb-1">Full Stack Web Developer</h3>
           <p className="text-pink-500 text-sm font-medium mb-4">Accenture</p>
           <p className="text-neutral-300 text-xs md:text-sm font-normal mb-8 leading-relaxed">
             Supported 50+ enterprise-grade applications, focusing on security and availability. 
@@ -132,7 +132,7 @@ export function ChainLog() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="https://images.unsplash.com/photo-1558494949-efc025793ad0?q=80&w=2000&auto=format&fit=crop"
+              src="/teamsync-ai.png"
               alt="server room"
               width={500}
               height={500}

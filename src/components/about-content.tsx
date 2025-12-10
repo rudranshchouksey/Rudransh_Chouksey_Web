@@ -38,7 +38,7 @@ export default function AboutSection() {
     },
   };
   return (
-    <section className="pt-20 px-20 bg-black" ref={heroRef}>
+    <section className="pt-20 px-5 sm:px-10 md:px-20 bg-black" ref={heroRef}>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-600/20 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />

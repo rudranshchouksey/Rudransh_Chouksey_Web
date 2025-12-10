@@ -58,9 +58,21 @@ const pages: PageData[] = [
     slug: 'archverse-os',
   },
 
-  // 4. Meet AI
   {
     id: 3,
+    type: 'project',
+    title: "ArchVerse Board",
+    category: "Project Management • Kanban System",
+    description: "A modular Kanban board built for teams inside The ArchVerse OS. Supports drag-and-drop workflows, sprint views, priority flags, and cross-team handoff tracking.",
+    stack: ["Next.js", "Supabase", "React DnD", "Tailwind"],
+    image: "/archverse-board.png",
+    layout: 'right-image',
+    slug: 'archverse-board',
+  },
+
+  // 4. Meet AI
+  {
+    id: 4,
     type: 'project',
     title: "Meet Ai™",
     category: "Web • Mobile Web",
@@ -73,7 +85,7 @@ const pages: PageData[] = [
 
   // 5. TeamSync
   {
-    id: 4,
+    id: 5,
     type: 'project',
     title: "TeamSync AI",
     category: "Web • Desktop App",
@@ -86,7 +98,7 @@ const pages: PageData[] = [
 
   // 6. Foodied
   {
-    id: 5,
+    id: 6,
     type: 'project',
     title: "Foodied",
     category: "Web • PWA",
