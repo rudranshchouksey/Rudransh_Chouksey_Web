@@ -1,7 +1,7 @@
 "use client";
 
 import { type HTMLMotionProps, motion, useInView } from "motion/react";
-import React from "react";
+import React, { ComponentType } from "react";
 import type { Variants } from "motion/react";
 
 type TimelineContentProps<T extends keyof HTMLElementTagNameMap> = {
@@ -47,8 +47,9 @@ export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
     once,
   });
 
-  // FIX: Type the component more specifically to avoid the 'never' child error
-  const MotionComponent = (motion as any)[as || "div"];
+  // FIX: Cast the dynamic motion component to ComponentType with specific props
+  // instead of 'any' to satisfy the linter and the build process.
+  const MotionComponent = motion[as || "div"] as ComponentType<HTMLMotionProps<T>>;
 
   return (
     <MotionComponent
@@ -57,9 +58,11 @@ export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
       custom={animationNum}
       variants={sequenceVariants}
       className={className}
-      {...(props as any)}
+      {...props}
     >
-      {/* FIX: Wrapping in a fragment solves the 'expects type never' bug */}
+      {/* Wrapping in a fragment to ensure a single React node is passed, 
+         solving the 'expects type never' error often seen in CI/CD builds.
+      */}
       <>{children}</>
     </MotionComponent>
   );
