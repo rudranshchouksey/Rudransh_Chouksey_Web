@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Rudransh Chouksey - Portfolio",
   description: "Full-stack developer and designer crafting digital experiences",
+  icons: {
+    icon: "/rudransh-v1.png",
+    apple: "/rudransh-v1.png",
+  },
 };
 
 export default function RootLayout({
