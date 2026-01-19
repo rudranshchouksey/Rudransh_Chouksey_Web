@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 // 2. Lazy Load the Contact Section
 // This separates the form logic from the initial page load, improving 'Time to Interactive'.
-const ContactSection = dynamic(() => import("@/components/contact"), {
+const ContactSection = dynamic(() => import("@/components/contact/contact"), {
   // Simple skeleton loader to improve perceived speed
   loading: () => (
     <div className="w-full min-h-screen bg-black flex items-center justify-center">

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 
 // 1. Lazy Load the Hero Section
 // We separate the heavy slideshow logic from the initial HTML response.
-const ProjectSlideshowWrapper = dynamic(() => import('./project-slideshow-wrapper'), {
+const ProjectSlideshowWrapper = dynamic(() => import('@/components/projects/project-slideshow-wrapper'), {
   // A dark placeholder prevents layout shift (CLS) while the slideshow loads
   loading: () => <div className="w-full h-screen bg-[#0a0a0a] animate-pulse" />,
 });

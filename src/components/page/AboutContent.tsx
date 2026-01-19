@@ -14,7 +14,7 @@ import {
   Award,
   Terminal,
 } from "lucide-react";
-import ExperienceSection from "@/components/portfolio/ExperienceSection";
+import ExperienceSection from "@/components/about/ExperienceSection";
 
 export default function AboutContent() {
   // Data tailored to Rudransh Chouksey

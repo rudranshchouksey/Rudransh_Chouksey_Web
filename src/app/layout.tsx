@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import GradientMenu from "@/components/gradient-menu";
+import GradientMenu from "@/components/navbar/gradient-menu";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

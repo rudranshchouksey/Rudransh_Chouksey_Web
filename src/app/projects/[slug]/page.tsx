@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 // 1. Lazy Load the Client Component
 // This splits the heavy interaction logic (Framer Motion, 3D cards) from the main bundle.
-const CaseStudyView = dynamic(() => import('@/components/page/CaseStudyView'), {
+const CaseStudyView = dynamic(() => import('@/components/projects/CaseStudyView'), {
   // A dark placeholder ensures smooth visual transition during client-side navigation
   loading: () => <div className="min-h-screen w-full bg-[#0a0a0a]" />,
 });

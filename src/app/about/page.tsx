@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import dynamic from 'next/dynamic';
-import AboutContent from "@/components/about-content";
-import AboutVisuals from "@/components/about-visuals"; // [!code highlight] Import the new wrapper
+import AboutContent from "@/components/about/about-content";
+import AboutVisuals from "@/components/about/about-visuals"; // [!code highlight] Import the new wrapper
 
 // These components don't use ssr: false, so they can stay here
-const ExperienceSection = dynamic(() => import("@/components/portfolio/ExperienceSection"));
-const AwardComponent = dynamic(() => import("@/components/achivements"));
+const ExperienceSection = dynamic(() => import("@/components/about/ExperienceSection"));
+const AwardComponent = dynamic(() => import("@/components/about/achivements"));
 const CTASection = dynamic(() => import("@/components/portfolio/CTASection"));
 
 export const metadata: Metadata = {
