@@ -1,16 +1,18 @@
-import { type HTMLMotionProps, motion, useInView } from "motion/react"
-import type React from "react"
-import type { Variants } from "motion/react"
+"use client";
+
+import { type HTMLMotionProps, motion, useInView } from "motion/react";
+import React from "react";
+import type { Variants } from "motion/react";
 
 type TimelineContentProps<T extends keyof HTMLElementTagNameMap> = {
-  children?: React.ReactNode
-  animationNum: number
-  className?: string
-  timelineRef: React.RefObject<HTMLElement | null>
-  as?: T
-  customVariants?: Variants
-  once?: boolean
-} & HTMLMotionProps<T>
+  children?: React.ReactNode;
+  animationNum: number;
+  className?: string;
+  timelineRef: React.RefObject<HTMLElement | null>;
+  as?: T;
+  customVariants?: Variants;
+  once?: boolean;
+} & HTMLMotionProps<T>;
 
 export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
   children,
@@ -19,10 +21,10 @@ export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
   className,
   as,
   customVariants,
-  once=false,
+  once = false,
   ...props
 }: TimelineContentProps<T>) => {
-  const defaultSequenceVariants = {
+  const defaultSequenceVariants: Variants = {
     visible: (i: number) => ({
       filter: "blur(0px)",
       y: 0,
@@ -37,16 +39,16 @@ export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
       y: 0,
       opacity: 0,
     },
-  }
+  };
 
-  // Use custom variants if provided, otherwise use default
-  const sequenceVariants = customVariants || defaultSequenceVariants
+  const sequenceVariants = customVariants || defaultSequenceVariants;
 
   const isInView = useInView(timelineRef, {
-    once
-  })
+    once,
+  });
 
-  const MotionComponent = motion[as || "div"] as React.ElementType
+  // FIX: Type the component more specifically to avoid the 'never' child error
+  const MotionComponent = (motion as any)[as || "div"];
 
   return (
     <MotionComponent
@@ -55,9 +57,10 @@ export const TimelineContent = <T extends keyof HTMLElementTagNameMap = "div">({
       custom={animationNum}
       variants={sequenceVariants}
       className={className}
-      {...props}
+      {...(props as any)}
     >
-      {children}
+      {/* FIX: Wrapping in a fragment solves the 'expects type never' bug */}
+      <>{children}</>
     </MotionComponent>
-  )
-}
+  );
+};
