@@ -11,7 +11,7 @@ import {
   type OGLRenderingContext,
 } from "ogl";
 import { useEffect, useRef } from "react";
-import { cn } from "@/lib/utils"; // Assuming shadcn 'cn' utility path
+import { cn } from "@/lib/utils";
 
 /* --------------------------------
 * Types
@@ -23,42 +23,28 @@ export interface GalleryItem {
 
 interface CircularGalleryProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * An array of image and text objects for the gallery.
-   */
   items?: GalleryItem[];
-  /**
-   * The amount of curvature. Higher values create a stronger bend.
-   * @default 3
-   */
   bend?: number;
-  /**
-   * The border radius for the images, as a percentage (0.0 to 0.5).
-   * @default 0.05
-   */
   borderRadius?: number;
-  /**
-   * Multiplier for scroll interaction speed.
-   * @default 2
-   */
   scrollSpeed?: number;
-  /**
-   * Easing factor for the scroll animation (lower is smoother).
-   * @default 0.05
-   */
   scrollEase?: number;
-  /**
-   * Optional class name to override the default font (e.g., from Next/font).
-   */
   fontClassName?: string;
+}
+
+interface ScrollState {
+  ease: number;
+  current: number;
+  target: number;
+  last: number;
+  position?: number;
 }
 
 /* --------------------------------
 * OGL Helper Utilities
 ----------------------------------- */
-function debounce(func: (...args: any[]) => void, wait: number) {
+function debounce<T extends (...args: unknown[]) => void>(func: T, wait: number) {
   let timeout: NodeJS.Timeout;
-  return function (this: any, ...args: any[]) {
+  return function (this: unknown, ...args: Parameters<T>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
@@ -71,8 +57,9 @@ function lerp(p1: number, p2: number, t: number) {
 function autoBind(instance: object) {
   const proto = Object.getPrototypeOf(instance);
   Object.getOwnPropertyNames(proto).forEach((key) => {
-    if (key !== "constructor" && typeof (instance as any)[key] === "function") {
-      (instance as any)[key] = (instance as any)[key].bind(instance);
+    const value = (instance as Record<string, unknown>)[key];
+    if (key !== "constructor" && typeof value === "function") {
+      (instance as Record<string, Function>)[key] = value.bind(instance);
     }
   });
 }
@@ -309,8 +296,6 @@ class Media {
           vec4 color = texture2D(tMap, uv);
           
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
-          
-          // Smooth antialiasing for edges
           float edgeSmooth = 0.002;
           float alpha = 1.0 - smoothstep(-edgeSmooth, edgeSmooth, d);
           
@@ -417,10 +402,9 @@ class Media {
     if (screen) this.screen = screen;
     if (viewport) {
       this.viewport = viewport;
-      if ((this.plane.program.uniforms as any).uViewportSizes) {
-        (
-          this.plane.program.uniforms as any
-        ).uViewportSizes.value = [this.viewport.width, this.viewport.height];
+      const uniforms = this.plane.program.uniforms as Record<string, { value: number[] }>;
+      if (uniforms.uViewportSizes) {
+        uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
     }
     this.scale = this.screen.height / 1500;
@@ -442,7 +426,7 @@ class Media {
 class App {
   container: HTMLElement;
   scrollSpeed: number;
-  scroll: { ease: number; current: number; target: number; last: number };
+  scroll: ScrollState;
   onCheckDebounce: () => void;
   renderer!: Renderer;
   gl!: OGLRenderingContext;
@@ -456,11 +440,12 @@ class App {
   screen!: { width: number; height: number };
   viewport!: { width: number; height: number };
   raf!: number;
-  boundOnResize: () => void;
-  boundOnWheel: (e: WheelEvent) => void;
-  boundOnTouchDown: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchMove: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchUp: () => void;
+
+  boundOnResize = () => this.onResize();
+  boundOnWheel = (e: WheelEvent) => this.onWheel(e);
+  boundOnTouchDown = (e: MouseEvent | TouchEvent) => this.onTouchDown(e);
+  boundOnTouchMove = (e: MouseEvent | TouchEvent) => this.onTouchMove(e);
+  boundOnTouchUp = () => this.onTouchUp();
 
   constructor(
     container: HTMLElement,
@@ -486,8 +471,6 @@ class App {
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
-
-    autoBind(this);
 
     this.createRenderer();
     this.createCamera();
@@ -536,18 +519,12 @@ class App {
   ) {
     const defaultItems: GalleryItem[] = [
       { image: `https://picsum.photos/seed/1/800/600?grayscale`, text: "Bridge" },
-      {
-        image: `https://picsum.photos/seed/2/800/600?grayscale`,
-        text: "Desk Setup",
-      },
-      {
-        image: `https://picsum.photos/seed/3/800/600?grayscale`,
-        text: "Waterfall",
-      },
+      { image: `https://picsum.photos/seed/2/800/600?grayscale`, text: "Desk Setup" },
+      { image: `https://picsum.photos/seed/3/800/600?grayscale`, text: "Waterfall" },
     ];
 
     const galleryItems = items && items.length > 0 ? items : defaultItems;
-    this.mediasImages = [...galleryItems, ...galleryItems]; // Duplicate for seamless loop
+    this.mediasImages = [...galleryItems, ...galleryItems];
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
         geometry: this.planeGeometry,
@@ -578,7 +555,9 @@ class App {
     if (!this.isDown) return;
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
     const distance = (this.start - x) * (this.scrollSpeed * 0.025);
-    this.scroll.target = (this.scroll as any).position + distance;
+    if (this.scroll.position !== undefined) {
+      this.scroll.target = this.scroll.position + distance;
+    }
   }
 
   onTouchUp() {
@@ -587,7 +566,7 @@ class App {
   }
 
   onWheel(e: WheelEvent) {
-    const delta = e.deltaY || (e as any).wheelDelta || e.detail;
+    const delta = e.deltaY;
     this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
     this.onCheckDebounce();
   }
@@ -620,7 +599,7 @@ class App {
     }
   }
 
-  update() {
+  update = () => {
     this.scroll.current = lerp(
       this.scroll.current,
       this.scroll.target,
@@ -636,14 +615,7 @@ class App {
   }
 
   addEventListeners() {
-    this.boundOnResize = this.onResize;
-    this.boundOnWheel = this.onWheel;
-    this.boundOnTouchDown = this.onTouchDown;
-    this.boundOnTouchMove = this.onTouchMove;
-    this.boundOnTouchUp = this.onTouchUp;
-
     window.addEventListener("resize", this.boundOnResize);
-    window.addEventListener("mousewheel", this.boundOnWheel);
     window.addEventListener("wheel", this.boundOnWheel);
     this.container.addEventListener("mousedown", this.boundOnTouchDown);
     window.addEventListener("mousemove", this.boundOnTouchMove);
@@ -656,7 +628,6 @@ class App {
   destroy() {
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener("resize", this.boundOnResize);
-    window.removeEventListener("mousewheel", this.boundOnWheel);
     window.removeEventListener("wheel", this.boundOnWheel);
     this.container.removeEventListener("mousedown", this.boundOnTouchDown);
     window.removeEventListener("mousemove", this.boundOnTouchMove);
@@ -671,9 +642,6 @@ class App {
   }
 }
 
-/* --------------------------------
-* React Component
------------------------------------ */
 const CircularGallery = ({
   items,
   bend = 3,
@@ -689,13 +657,11 @@ const CircularGallery = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Get computed styles for theme-adaptive text
     const computedStyle = getComputedStyle(containerRef.current);
     const computedColor = computedStyle.color || "hsl(var(--foreground))";
     const computedFontWeight = computedStyle.fontWeight || "bold";
     const computedFontSize = computedStyle.fontSize || "30px";
     const computedFontFamily = computedStyle.fontFamily;
-
     const computedFont = `${computedFontWeight} ${computedFontSize} ${computedFontFamily}`;
 
     const app = new App(containerRef.current, {
@@ -718,7 +684,6 @@ const CircularGallery = ({
       ref={containerRef}
       className={cn(
         "w-full h-full overflow-hidden cursor-grab active:cursor-grabbing",
-        // Apply theme-aware defaults for getComputedStyle to read
         "text-foreground font-bold text-[30px]",
         fontClassName,
         className,

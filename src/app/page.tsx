@@ -27,14 +27,6 @@ const TestimonialsVariant = dynamic(() => import("@/components/homepage/Testimon
 const CTASection = dynamic(() => import("@/components/portfolio/CTASection"));
 
 export default function HomePage() {
-  // Social links data (kept for reference if needed later)
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/rudranshchouksey' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/rudransh-chouksey/' },
-    { icon: Twitter, href: 'https://x.com/RudraChouksey' },
-    { icon: Instagram, href: 'https://www.instagram.com/rudranshchouksey/' },
-  ];
-
   return (
     <div className="min-h-screen bg-black selection:bg-pink-500/30">
       

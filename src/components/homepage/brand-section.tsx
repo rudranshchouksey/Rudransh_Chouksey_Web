@@ -22,7 +22,7 @@ const BrandSection = () => {
         {/* Section Header */}
         <div className="flex flex-col items-center mb-10">
           <p className="text-neutral-500 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">
-            Brands I've Worked With
+            Brands I&apos;ve Worked With
           </p>
           <div className="w-10 h-[1px] bg-lime-400/50" />
         </div>
