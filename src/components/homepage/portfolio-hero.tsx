@@ -123,7 +123,7 @@ export default function Component() {
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[90px] sm:text-[110px] md:text-[150px] lg:text-[210px] leading-[0.9] justify-center tracking-tighter uppercase whitespace-nowrap"
+                className="font-bold text-[80px] sm:text-[90px] md:text-[150px] lg:text-[210px] leading-[0.9] justify-center tracking-tighter uppercase whitespace-nowrap"
                 style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -133,7 +133,7 @@ export default function Component() {
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[90px] sm:text-[110px] md:text-[150px] lg:text-[210px] leading-[0.9] justify-center tracking-tighter uppercase whitespace-nowrap"
+                className="font-bold text-[80px] sm:text-[90px] md:text-[150px] lg:text-[210px] leading-[0.9] justify-center tracking-tighter uppercase whitespace-nowrap"
                 style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
               />
             </div>

@@ -13,6 +13,7 @@ const brands = [
   { id: 6, name: "Twin Pix", logo: "/twinpix-logo.png", url: "#" },
   { id: 7, name: "Puma", logo: "/PUM.DE_BIG.D.png", url: "#" },
   { id: 8, name: "Pfizer", logo: "/Pfizer.png", url: "#" },
+  { id: 9, name: "Eirgrid", logo: "/Eirgrid_logo.svg", url: "#" },
 ];
 
 const BrandSection = () => {

@@ -58,10 +58,10 @@ export default function ServicesSection() {
           {/* Left Side: Service Titles with better contrast */}
           <div className="flex flex-col space-y-2 w-full lg:w-3/5">
             {SLIDES.map((slide, index) => (
-              <div key={slide.id} className="group border-b text-white border-white/5 py-4 last:border-0">
+              <div key={slide.id} className="group border-b border-white/5 py-4 last:border-0">
                 <TextStaggerHover
                   index={index}
-                  className="cursor-pointer text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter opacity-20 group-hover:opacity-100 transition-all duration-500 ease-out hover:text-pink-500"
+                  className="cursor-pointer text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white/30 group-hover:text-white transition-all duration-500 ease-out hover:!text-pink-500"
                   text={slide.title}
                 />
               </div>
