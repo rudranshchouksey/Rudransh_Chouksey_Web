@@ -63,20 +63,20 @@ export default function HeroSection() {
             <div className="relative w-[300px] h-[300px]"> 
               {/* Card 1 */}
               <PhotoCard
-                src="https://framerusercontent.com/images/iTYf5BdHF9LFJQ3JBv65nwyo730.jpg"
-                alt="Landscape photography"
+                src="/frontend.jpg"
+                alt="Frontend Mastery"
                 rotation={-6}
-                text="Travel"
+                text="Frontend Mastery"
                 index={0}
                 className="left-0 top-0"
               />
               
               {/* Card 2 */}
               <PhotoCard
-                src="https://framerusercontent.com/images/uOHOKF6VtoSK07qQRm4AYoxI.jpg"
-                alt="Portrait photography"
+                src="/bankend.jpg"
+                alt="Scalable Backends"
                 rotation={12}
-                text="Portraits"
+                text="Scalable Backends"
                 index={1}
                 className="right-0 top-8"
               />

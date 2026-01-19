@@ -2,21 +2,15 @@
 
 import React, { Suspense } from "react";
 import dynamic from 'next/dynamic';
-import { Instagram, Twitter, Linkedin, Github } from 'lucide-react';
-
-// Core Layout Components
-import Component from "@/components/homepage/portfolio-hero";
-import BrandSection from "@/components/homepage/brand-section";
-import HeroSection from "@/components/homepage/Hero-section";
 
 // Dynamic Imports for Performance
 const SpotlightCursor = dynamic(() => import("@/components/homepage/spotlight-cursor").then(mod => mod.Component), {
   ssr: false,
 });
 
-const CircularProjectShowcase = dynamic(() => import('../components/about/projectshowcase'), { 
-  ssr: false 
-});
+const MainComponent = dynamic(() => import("@/components/homepage/portfolio-hero"));
+const BrandSection = dynamic(() => import("@/components/homepage/brand-section"));
+const HeroSection = dynamic(() => import("@/components/homepage/Hero-section"));
 
 const ChainLog = dynamic(() => import("@/components/homepage/chainlog").then(mod => mod.ChainLog));
 const ServicesSection = dynamic(() => import("@/components/homepage/ServicesSection"));
@@ -44,7 +38,7 @@ export default function HomePage() {
         
         {/* Header / Hero Area */}
         <div className="w-full bg-black">
-          <Component />
+          <MainComponent />
           <BrandSection />
           <HeroSection />
         </div>
@@ -52,7 +46,6 @@ export default function HomePage() {
         {/* Secondary Content - Lazy Loaded */}
         <Suspense fallback={<div className="h-40 w-full bg-black flex items-center justify-center text-neutral-800">Loading...</div>}>
           <ChainLog />
-          <CircularProjectShowcase />
           <ServicesSection />
           <ProcessSection />
           <ComparisonSection />

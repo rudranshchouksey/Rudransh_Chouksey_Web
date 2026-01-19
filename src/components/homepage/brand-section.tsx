@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const brands = [
-  { id: 1, name: "UpskillValley", logo: "https://placehold.co/200x80/1a1a1a/00f2fe/png?text=UpskillValley", url: "#" },
-  { id: 2, name: "LnW", logo: "https://placehold.co/200x80/1a1a1a/f53803/png?text=LnW", url: "#" },
-  { id: 3, name: "Paudha", logo: "https://placehold.co/200x80/1a1a1a/a2ff00/png?text=Paudha", url: "#" },
-  { id: 4, name: "MR Furniture", logo: "https://placehold.co/200x80/1a1a1a/f40076/png?text=MR+Furniture", url: "#" },
-  { id: 5, name: "GMAT GRE", logo: "/accenture_logo.jpg", url: "#" },
+  { id: 1, name: "dr reddys", logo: "/Dr._Reddy's_Laboratories_logo.svg.png", url: "#" },
+  { id: 2, name: "The Serifs", logo: "/theserifs_logo.jpg", url: "#" },
+  { id: 3, name: "Archverse", logo: "/archverse.png", url: "#" },
+  { id: 4, name: "Women Kabadi Leage", logo: "/wkl.png", url: "#" },
+  { id: 5, name: "Accenture", logo: "/ACN_BIG.D.png", url: "#" },
   { id: 6, name: "Twin Pix", logo: "/twinpix-logo.png", url: "#" },
+  { id: 7, name: "Puma", logo: "/PUM.DE_BIG.D.png", url: "#" },
+  { id: 8, name: "Pfizer", logo: "/Pfizer.png", url: "#" },
 ];
 
 const BrandSection = () => {

@@ -13,7 +13,7 @@ const features = [
     step: 'Step 2',
     title: 'Design & Validate',
     content: 'I craft clean, modern, and experience-driven UI/UX designs. Together, we refine concepts until the direction aligns perfectly with your ambition.',
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a5638d48?q=80&w=2670&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'
   },
   {
     step: 'Step 3',
